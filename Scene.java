@@ -1,10 +1,11 @@
+@SuppressWarnings ("unused")
 public class Scene {
 
 	private int budget;
-	private Role[] roles = new Role[];
+	private Role[] roles;
 	private int shotCounters;
 
-	public void wrapScene()
-	{
+	public void wrapScene(){
+
 	}
 }
