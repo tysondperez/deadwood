@@ -1,8 +1,9 @@
+@SuppressWarnings ("unused")
 public class Location {
 
-	Role[] roles;
-	Location[] adjLocations;
-	Player[] playersHere;
+	private Role[] roles;
+	private Location[] adjLocations;
+	private Player[] playersHere;
 	boolean isCastingOffice;
 	Scene scene = new Scene();
 

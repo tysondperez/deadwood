@@ -3,9 +3,9 @@ public class Player {
 
 	private int playerNum;
 	private int rank;
-    private Role curRole;
-    private Location curLocation;
-    private Bank playerBank;
+    	private Role curRole;
+    	private Location curLocation;
+    	private Bank playerBank;
 
 	public void move(){
 

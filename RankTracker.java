@@ -1,10 +1,10 @@
-
+@SuppressWarnings ("unused")
 public class RankTracker {
 	
 	//object type player
+	private Player[] players;
 
-	public void choosePayment()
-	{
+	public void choosePayment(){
 		
 	}
 	
@@ -13,8 +13,7 @@ public class RankTracker {
 		//int rank1 = 
 	}
 	
-	public void checkPayment()
-	{
+	public void checkPayment(){
 		//if payment > rankChosen, turn die
 		//if payment < rankChosen
 	}

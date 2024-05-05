@@ -1,9 +1,10 @@
 @SuppressWarnings ("unused")
 public class Deck{
+	
 	private int totalCards;
 	private int cardsLeft;
 
-	public void getCard()
-	{
+	public void getCard(){
+	
 	}	
 }
