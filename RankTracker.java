@@ -1,5 +1,5 @@
 
-public class rankTracker {
+public class RankTracker {
 	
 	//object type player
 
