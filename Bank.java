@@ -5,6 +5,12 @@ public class Bank {
     private int creditBal;
     private int dollarBal;
 
+    public Bank(Player p, int sC){
+        bankOwner = p;
+        creditBal = sC;
+        dollarBal = 0;
+    }
+
     public void updateCred(int change){
 
     }
