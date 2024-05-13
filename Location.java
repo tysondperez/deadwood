@@ -12,6 +12,7 @@ public class Location {
 
 	public Location(String n){
 		name = n;
+		playersHere = new ArrayList<>();
 	}
 
 	public void awardBonuses(){
@@ -20,6 +21,10 @@ public class Location {
 
 	public void addPlayer (Player p){
 		playersHere.add(p);
+	}
+
+	public String getName(){
+		return name;
 	}
 
 }

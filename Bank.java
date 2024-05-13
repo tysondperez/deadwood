@@ -18,4 +18,12 @@ public class Bank {
     public void updateDol(int change){
 
     }
+
+    public int getCredits(){
+        return creditBal;
+    }
+
+    public int getDollars(){
+        return dollarBal;
+    }
 }

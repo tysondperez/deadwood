@@ -14,6 +14,8 @@ public class Deadwood{
             }
             numP = input.nextInt();
         }
+        GameManager game = new GameManager(numP);
+        game.printStatus();
     }
 }
 

@@ -37,4 +37,16 @@ public class Player {
 
 	}
 
+	public int getRank(){
+		return rank;
+	}
+
+	public Location getLocation(){
+		return curLocation;
+	}
+
+	public Bank getBank(){
+		return playerBank;
+	}
+
 }
