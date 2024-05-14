@@ -5,9 +5,10 @@ public class Location {
 
 	private String name;
 	private Role[] roles;
-	private Location[] adjLocations;
+	private Location[] adjLocations; //get adjacent locations to current location from xml file
 	private ArrayList<Player> playersHere;
 	boolean isCastingOffice;
+	private int c;
 	Scene scene;
 
 	public Location(String n){
@@ -16,6 +17,24 @@ public class Location {
 	}
 
 	public void awardBonuses(){
+		//check if there are more than one players and at least one player on the card
+		/*
+		 * if(playersHere > 1 && player.On_Card >= 1){
+		 * 
+		 * 		for (int i = 1; i <= budget; i++){
+		 *  		collect[c] = GameManager.rollDie();
+		 *  		c++;
+		 * 		}
+		 * 	
+		 * 		while (collect [i] != 0){
+		 * 
+		 * 			for (int i = 0; i < c, i++){
+		 * 				//assign die to current player
+		 * 				//if player = 0, restart the list
+		 * 			}
+		 * 		}
+		 *
+		*/
 		
 	}
 
