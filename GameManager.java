@@ -47,11 +47,28 @@ public class GameManager {
     }
 
     public void endDay(){
-
+    	if (scenesLeft == 1){
+    		//move players back to trailer, 
+    		daysLeft = daysLeft - 1;
+    		if (daysLeft == 0){
+    			//add up each players total
+    			//compare the totals
+    			//declare winner
+    			//end game
+    		}
+    		locations = new Location[1];
+    		locations[0] = new Location("Trailer");
+    		scenesLeft = 20;
+    		
+    	}
     }
 
-    public int rollDice(){
-        return 0;
+    public static int rollDice(){ //change to static, maybe temp?
+        int max = 6;
+        int min = 1;
+        int range = max - min + 1;
+        int rand = (int)(Math.random() * range) + min;
+        return rand;
     }
 
     public void printStatus(){
