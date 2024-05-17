@@ -3,6 +3,7 @@ public class Role {
 
     private int level;
     private boolean isTaken;
+    private String name;
     
     public void viewScene()
     {
@@ -10,4 +11,9 @@ public class Role {
     	//find empty roles
     	
     }
+
+    public String getName(){
+        return name;
+    }
+
 }

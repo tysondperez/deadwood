@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 @SuppressWarnings ("unused")
 public class GameManager {
 
@@ -46,21 +48,32 @@ public class GameManager {
         System.out.println("Game Started!\n");
     }
 
+    public void endTurn(){
+        if (currentTurn == numPlayers){
+            currentTurn = 1;
+        } else {
+            currentTurn ++;
+        }
+        if (scenesLeft <= 1){
+            endDay();
+        }
+    }
+
     public void endDay(){
-    	if (scenesLeft == 1){
-    		//move players back to trailer, 
-    		daysLeft = daysLeft - 1;
-    		if (daysLeft == 0){
-    			//add up each players total
-    			//compare the totals
-    			//declare winner
-    			//end game
-    		}
-    		locations = new Location[1];
-    		locations[0] = new Location("Trailer");
-    		scenesLeft = 20;
-    		
-    	}
+        //move players back to trailer, 
+        daysLeft = daysLeft - 1;
+        if (daysLeft == 0){
+            //add up each players total
+            //compare the totals
+            //declare winner
+            //end game
+        }
+        //i dont think we need these lines
+          //locations = new Location[1];
+          //locations[0] = new Location("Trailer");
+        //locations shouldn't change, only the scenes
+        //locations are the spots on the board, scenes are the cards
+        scenesLeft = 20;
     }
 
     public static int rollDice(){ //change to static, maybe temp?
@@ -71,6 +84,22 @@ public class GameManager {
         return rand;
     }
 
+    public int getDaysLeft(){
+        return daysLeft;
+    }
+
+    public int getCurrentTurn(){
+        return currentTurn;
+    }
+
+    //do the same thing, but if pNum is unspecified, returns active player
+    public Player getPlayer(){
+        return players[currentTurn - 1];
+    }
+    public Player getPlayer(int pNum){
+        return players[pNum - 1];
+    }
+
     public void printStatus(){
         System.out.println("Days Remaining: "+daysLeft+" (Game ends when there are 0 remaining)");
         System.out.println("Scenes Remaining: "+scenesLeft);
@@ -78,9 +107,40 @@ public class GameManager {
         System.out.println("Rank: "+players[currentTurn - 1].getRank());
         System.out.println("Available Credits: "+players[currentTurn - 1].getBank().getCredits());
         System.out.println("Available Dollars: "+players[currentTurn - 1].getBank().getDollars());
+        Role curRole = players[currentTurn - 1].getRole();
+        if (curRole == null){
+            System.out.println("Role: None");
+        }else {
+            System.out.println("Role: "+curRole.getName());
+        }
         System.out.println("\nLocations:");
         for (int i = 0; i < numPlayers; i++){
             System.out.println("Player "+(i+1)+": "+players[i].getLocation().getName());
         }
+    }
+
+    public ArrayList<Character> printOptions(){
+        System.out.println("\nYour turn, Player "+currentTurn+"!");
+        System.out.println("Your options are:");
+        Player curPlayer = players[currentTurn - 1];
+        ArrayList<Character> options = new ArrayList<Character>();
+        if (curPlayer.getLocation().getName().equals("Casting Office") && curPlayer.canUpgrade()){
+            System.out.println("Upgrade (u)");
+            options.add('u');
+        }
+        if (curPlayer.getRole() == null){
+            System.out.println("Move (m)");
+            options.add('m');
+            System.out.println("Take a Role (t)");
+            options.add('t');
+        } else {
+            System.out.println("Act (a)");
+            options.add('a');
+            System.out.println("Rehearse (r)");
+            options.add('r');
+        }
+        System.out.println("End Turn (e)");
+        options.add('e');
+        return options;
     }
 }
