@@ -8,6 +8,7 @@ public class Player {
     private Role curRole;
     private Location curLocation;
     private Bank playerBank;
+	private int timesRehearsed;
 
 	public Player(int pNum, int sC, int sR){
 		//set instance vars
@@ -20,6 +21,7 @@ public class Player {
 		curLocation.addPlayer(this);
 		//create Bank w default vals
 		playerBank = new Bank(this, sC);
+		timesRehearsed = 0;
 	}
 
 	public void move(Scanner input){
@@ -150,11 +152,36 @@ public class Player {
 	}
 	
 	public void rehearse(){
-		
+		timesRehearsed++;
+	}
+
+	public void reset(){
+		timesRehearsed = 0;
+		curRole = null;
+	}
+
+	public int getRehearsed(){
+		return timesRehearsed;
 	}
 
 	public void act(){
-
+		int diceRoll = GameManager.rollDice();
+		int budget = curLocation.getScene().getBudget();
+		System.out.println("Rolling dice...\n");
+		System.out.println("You rolled a "+diceRoll+"!");
+		boolean success = (diceRoll + timesRehearsed) 
+			>= budget;
+		if (success){
+			System.out.println("Your roll, "+diceRoll+
+				" + your rehearsal chips ("+timesRehearsed+
+				") was higher than/equal to the budget ("+budget+")!");
+			curLocation.removeShot();
+		} else {
+			System.out.println("Sorry! Your roll, "+diceRoll+
+					" + your rehearsal chips ("+timesRehearsed+
+					") was lower than the budget ("+budget+").");
+		}
+		curRole.getRewards(success, this);
 	}
 
 	public boolean canUpgrade(){

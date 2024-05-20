@@ -66,13 +66,12 @@ public class GameManager {
         daysLeft--;
         if (daysLeft == 0){
             endGame();
-            //add up each players total
-            //compare the totals
-            //declare winner
-            //end game
         } else {
             scenesLeft = 10;
             Deck.dealCards();
+            for (int i = 0; i < locations.length; i++){
+                locations[i].setMaxShots();
+            }
             for (int i = 0; i < numPlayers; i++){
                 players[i].getLocation().removePlayer(players[i]);
                 players[i].setLocation(locations[10]);
@@ -88,7 +87,10 @@ public class GameManager {
     }
 
     public void endGame(){
-        
+        //add up each players total
+            //compare the totals
+            //declare winner
+            //end game
     }
 
     public static int rollDice(){ //change to static, maybe temp?
@@ -155,8 +157,10 @@ public class GameManager {
         } else {
             System.out.println("Act (a)");
             options.add('a');
-            System.out.println("Rehearse (r)");
-            options.add('r');
+            if ((curPlayer.getRehearsed() + 1) < curPlayer.getLocation().getScene().getBudget()){
+                System.out.println("Rehearse (r)");
+                options.add('r');
+            }
         }
         System.out.println("End Turn (e)");
         options.add('e');

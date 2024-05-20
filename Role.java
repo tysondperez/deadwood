@@ -16,6 +16,10 @@ public class Role {
         taken = false;
     }
 
+    public void getRewards(boolean success, Player player) {
+        System.out.println("shouldn't have been called");
+    }
+
     public void viewScene()
     {
     	//at location, view the scene, get available roles and rank requirement from xml file
@@ -25,6 +29,10 @@ public class Role {
 
     public String getName(){
         return name;
+    }
+
+    public int getLevel(){
+        return level;
     }
 
     public boolean isTaken(){

@@ -23,6 +23,10 @@ public class Scene {
 		return roles;
 	}
 
+	public int getBudget(){
+		return budget;
+	}
+
 	public void wrapScene(){
 		//for every person on scene
 		//determine if on using Role class

@@ -34,7 +34,6 @@ public class Deadwood{
             Player curPlayer = game.getPlayer();
             if (choice == 'e'){
                 System.out.println("Chose to end turn");
-                game.endTurn();
             } else if (choice == 'a'){
                 System.out.println("Chose to act");
                 curPlayer.act();
@@ -74,11 +73,9 @@ public class Deadwood{
                         }
                     }
                 }
-                game.endTurn();
             } else if (choice == 't'){
                 System.out.println("Chose to take role");
                 curPlayer.takeRole(input);
-                game.endTurn();
             } else if (choice == 'u'){
                 System.out.println("Chose to upgrade");
                 curPlayer.upgrade(input);
@@ -105,8 +102,8 @@ public class Deadwood{
                         }
                     }
                 }
-                game.endTurn();
             }
+            game.endTurn();
         }
         input.close();
     }

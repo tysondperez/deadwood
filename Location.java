@@ -8,12 +8,15 @@ public class Location {
 	private Location[] adjLocations; //get adjacent locations to current location from xml file
 	private ArrayList<Player> playersHere;
 	boolean isCastingOffice;
-	private int shotCounters;
+	private int maxShotCounters;
+	private int curShotCounters;
 	Scene scene;
 
 	public Location(int i){
 		name = Get_Info.location[i];
+
 		adjLocations = new Location[4];
+
 		if (i >= 10){
 			roles = null;
 		}
@@ -23,17 +26,22 @@ public class Location {
 				roles[j] = new Off_Card(i, j);
 			}
 		}
+
 		if (name.equals("Casting Office") || name.equals("Trailers")){
-			shotCounters = -1;
+			maxShotCounters = -1;
 		} else {
-			shotCounters = Get_Info.markers[i];
+			maxShotCounters = Get_Info.markers[i];
 		}
+		curShotCounters = maxShotCounters;
+
 		if (name.equals("Casting Office")){
 			isCastingOffice = true;
 		} else {
 			isCastingOffice = false;
 		}
+
 		playersHere = new ArrayList<>();
+
 		scene = null;
 	}
 
@@ -98,7 +106,15 @@ public class Location {
 	}
 
 	public int getShots(){
-		return shotCounters;
+		return curShotCounters;
+	}
+
+	public void setMaxShots(){
+		curShotCounters = maxShotCounters;
+	}
+
+	public void removeShot(){
+		curShotCounters --;
 	}
 
 	public void dealScene(Scene s){
@@ -107,6 +123,10 @@ public class Location {
 		for (int i = 0; i < sRoles.length; i++){
 			roles[4 + i] = sRoles[i];
 		}
+	}
+
+	public Scene getScene(){
+		return scene;
 	}
 
 	public Role[] getRolesAvail(){
