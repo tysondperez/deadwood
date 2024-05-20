@@ -6,7 +6,7 @@ public class Get_Info {
 	
 	
 	
-	//public void cardName() {
+	//-----------------------------------------------card info-----------------------------------------------------------------------------------------------
 		public String [] cardName = {"Evil Wears A Hat", 
 						 "Law and the Old West",
 						 "The Life and Times of John Skywater",
@@ -47,8 +47,8 @@ public class Get_Info {
 						 "How They Get Milk",
 						 "Breakin' in Trick Ponies",
 						 "Custer's Other Stands"}; //1 card
-	public int[][] sceneNumberAndBudget = {{7, 20, 22, 32, 12, 14, 31, 34, 24, 14, 19, 12, 16, 2, 3, 8, 6, 23, 30, 15, 25, 16, 12, 1, 14, 21, 15, 2, 27, 12, 25, 19, 35, 5, 9, 13, 17, 8, 19, 40},
-									{4, 3, 5, 5, 4, 6, 4, 4, 3, 4, 4, 2, 3, 2, 2, 5, 5, 3, 3, 5, 6, 5, 6, 2, 5, 6, 5, 4, 5, 4, 4, 6, 6, 4, 5, 4, 5, 4, 3, 5}}; // 1 scene and 1 budget
+	 public int[] sceneNumber = {7, 20, 22, 32, 12, 14, 31, 34, 24, 14, 19, 12, 16, 2, 3, 8, 6, 23, 30, 15, 25, 16, 12, 1, 14, 21, 15, 2, 27, 12, 25, 19, 35, 5, 9, 13, 17, 8, 19, 40};
+	 public int[] budget = {4, 3, 5, 5, 4, 6, 4, 4, 3, 4, 4, 2, 3, 2, 2, 5, 5, 3, 3, 5, 6, 5, 6, 2, 5, 6, 5, 4, 5, 4, 4, 6, 6, 4, 5, 4, 5, 4, 3, 5}; // 1 scene and 1 budget
 	 public String[] scene = {"Calhoun is seperated from the group during a white-knuckled chase near Desperation Bluff.", 
 					  "Charlie 'Three Guns' Henderson cooperates with Johnny Law and reluctantly enters the witless protection program.",
 					  "Disheartened by his lack of business acumen and his poor choice of investment partners, John Skywater sets off into the Cree Nation to convince them to kidnap his wife.",
@@ -91,7 +91,7 @@ public class Get_Info {
 					  "General George Armstrong Custer clinches another victory at the battle of Little Sands. His trusty steed Cairo is not so lucky."};
 	
 	
-	public String[][] partAndLine = {{"Defrocked Priest", "Marshal Canfield", "One-Eyed Man",
+	public String[] part = {"Defrocked Priest", "Marshal Canfield", "One-Eyed Man",
 								"Rug Merchant", "Banker", "Talking Mule",
 								"Auctioneer", "General Custer", null,
 								"Drunk", "Librarian", "Man with Hay",
@@ -130,9 +130,9 @@ public class Get_Info {
 								"Very Wet Man", "Dejected Housewife", "Man with Box",
 								"Marksman", "Postal Worker", "A Horse",
 								"Fraternity Pledge", "Man with Sword", null,
-								"Farmer", "Exploding Horse", "Jack"}, 
+								"Farmer", "Exploding Horse", "Jack"}; 
 			
-								{"Look out below!", "Hold fast!", "Balderdash!",
+    public String[] line = 	 {"Look out below!", "Hold fast!", "Balderdash!",
 								 "Don't leave my store!", "Trust me", "Nice work, Johnny!",
 								 "Going Once!", "Go West!", null,
 								 "Where's Willard?", "Shhhhh!", "Hey!",
@@ -171,7 +171,7 @@ public class Get_Info {
 								 "Sheesh!", "Its time had come.", "Progress!",
 								 "Pull!", "It's about time!", "Yes Sir!",
 								 "Beer me!", "None shall pass!", null,
-								 "Git off a that!", "Boom!", "Here we go again!"}}; //3 roles/lines
+								 "Git off a that!", "Boom!", "Here we go again!"}; //3 roles/lines
 	public int[] roleLevel = {2, 3, 4,
 					   1, 2, 4,
 					   5, 6, 0,
@@ -215,7 +215,7 @@ public class Get_Info {
 	
 	
 	
-	//public void board() {
+	//-------------------------------------------board info----------------------------------------------------------------------------------------------
 		public String[] location = {"Train Station",
 							 "Secret Hideout",
 							 "Church",
@@ -277,12 +277,14 @@ public class Get_Info {
 		
 		public int[] markers = {3, 3, 2, 3, 3, 1, 2, 2, 1, 2}; //assuming that <take> are the shot counters
 		
+	//----------------------------------actual methods------------------------------------------------------------------------------------	
+		//replaces a card name with null
 		public void removeCard (int index){
 			
 			cardName[index] = null;
 		}
-		//returns/gives a card name, a scene number and budget, and three corresponding roles and levels
-		public String getRoles(int index){
+		//returns/gives a card name
+		public String getCardName(int index){
 			
 		//	if (index == 0){
 				
@@ -310,6 +312,8 @@ public class Get_Info {
 			}*/
 			
 		}
+		
+		
  	
 }
 
