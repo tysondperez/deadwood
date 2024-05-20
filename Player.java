@@ -52,6 +52,7 @@ public class Player {
 			}
 		}
 		System.out.println("Moved to "+curLocation.getName()+"!");
+		input.close();
 	}
 
 	public void takeRole(){

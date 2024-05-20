@@ -99,6 +99,7 @@ public class Deadwood{
                 game.endTurn();
             }
         }
+        input.close();
     }
 }
 
