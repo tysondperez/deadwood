@@ -1,18 +1,44 @@
 @SuppressWarnings ("unused")
 public class Deck{
 	
-	private int totalCards;
-//	private int cardsLeft; oops, redundant
-
-	public void getCard(){
+	Get_Info card = new Get_Info();
+	public String[] name = new String[9]; //keeps track of the card name
+	public int[] randInd = new int[9];  //keeps track of the index numbers
+	private final int max = 39;
+	private final int min = 0;
 		
-		//will get cards from the xml file
+	public void dealCards(){
+		//40 total cards, get 10 indexes at random
+        
+        int range = max - min + 1;
+        int i = 0;
+        while (i <= 9){
+        	int rand = (int)(Math.random() * range) + min; //rand keeps track of indexes we're working with
+        	name[i] = card.getRoles(rand);               //get 10 cards to play with
+        	if (name[i] == null) {
+        		while (name[i] != null)
+        		{
+        			rand = (int)(Math.random() * range) + min;
+                	name[i] = card.getRoles(rand);
+        		}
+        	}
+        	randInd[i] = rand;
+        	card.removeCard(rand);
+        	i++;
+            
+        }
+        
+        		
+	}
 	
-	}	
-	
-	public void dealCards()
-	{
-		//for each location, deal a card, need xml
-		totalCards = totalCards - 1;
+	public void resetCards() {
+		int i = 0;
+		while (i <= 9)
+		{
+			name[i] = null;
+			randInd[i] = 0;
+			i++;
+		}
+		
 	}
 }
