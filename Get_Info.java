@@ -228,16 +228,19 @@ public class Get_Info {
 							 "Saloon",
 							 "Trailers",
 							 "Casting Office"};
-		
+
 		public String[] neighbor = {"Jail", "General Store", "Casting Office", null,
 							 "Church", "Ranch", "Casting Office", null,
 							 "Secret Hideout", "Bank", "Hotel", null,
+							 "Trailers", "Bank", "Church", null,
+							 "Trailers", "Jail", "Saloon", null,
 							 "Trailers", "Bank", "Church", null,
 							 "Trailers", "Jail", "Saloon", null,
 							 "Main Street", "General Store", "Train Station", null,
 							 "Ranch", "Train Station", "Jail", "Saloon",
 							 "Catsing Office", "General Store", "Secret Hideout", "Bank",
 							 "Saloon", "Church", "Ranch", "Hotel",
+							 "Main Street", "General Store", "Bank", "Trailers",
 							 "Main Street", "General Store", "Bank", "Trailers",
 							 "Main Street", "Saloon", "Hotel", null,
 							 "Train Station", "Ranch", "Secret Hideout", null};

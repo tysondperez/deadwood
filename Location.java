@@ -8,7 +8,7 @@ public class Location {
 	private Location[] adjLocations; //get adjacent locations to current location from xml file
 	private ArrayList<Player> playersHere;
 	boolean isCastingOffice;
-	private int c;
+	private int shotCounters;
 	Scene scene;
 
 	public Location(String n){
@@ -46,4 +46,17 @@ public class Location {
 		return name;
 	}
 
+	public Role[] getRolesAvail(){
+		Role ret[] = new Role[roles.length];
+		int j = 0;
+		for (int i = 0; i < roles.length; i++){
+			if (roles[i] != null){
+				if (!roles[i].isTaken()){
+					ret[j] = roles[i];
+					j++;
+				}
+			}
+		}
+		return ret;
+	}
 }

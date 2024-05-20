@@ -2,7 +2,7 @@
 public class Role {
 
     private int level;
-    private boolean isTaken;
+    private boolean taken;
     private String name;
     
     public void viewScene()
@@ -14,6 +14,23 @@ public class Role {
 
     public String getName(){
         return name;
+    }
+
+    public boolean isTaken(){
+        return taken;
+    }
+
+    public boolean isOnCard(){
+        return false;
+    }
+
+    public void take(){
+        taken = true;
+    }
+
+    public void printInfo(){
+        System.out.println(name);
+        System.out.println("\tLevel: "+level);
     }
 
 }

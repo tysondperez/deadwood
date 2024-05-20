@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Deadwood{
@@ -15,7 +16,85 @@ public class Deadwood{
             numP = input.nextInt();
         }
         GameManager game = new GameManager(numP);
-        game.printStatus();
+
+        //core gameplay loop
+        while(game.getDaysLeft() > 0){
+            game.printStatus();
+            ArrayList<Character> options = game.printOptions();
+            System.out.print("Please input your choice: ");
+            char choice = input.next().charAt(0);
+            // --------------------------------------------------------------THIS IS IN HERE FOR TESTING TAKE OUT WHEN DONE----------------------
+            if (choice == 'q'){
+                break;
+            }
+            while (!options.contains(choice)){
+                System.out.println("Invalid Input! Please try again: ");
+                choice = input.nextLine().charAt(0);
+            }
+            Player curPlayer = game.getPlayer();
+            if (choice == 'e'){
+                System.out.println("Chose to end turn");
+                game.endTurn();
+            } else if (choice == 'a'){
+                System.out.println("Chose to act");
+                curPlayer.act();
+            } else if (choice == 'r'){
+                System.out.println("Chose to rehearse");
+                curPlayer.rehearse();
+            } else if (choice == 'm'){
+                System.out.println("Chose to move");
+                curPlayer.move();
+                if ((curPlayer.getLocation().getName().equals("Casting Office")) && curPlayer.canUpgrade()){
+                    System.out.print("Would you also like to upgrade? (y/n): ");
+                    choice = input.next().charAt(0);
+                    while ((choice != 'y') && (choice != 'n')){
+                        System.out.println("Invalid Input! Please try again: ");
+                        choice = input.nextLine().charAt(0);
+                    }
+                    if (choice == 'y'){
+                        curPlayer.upgrade();
+                    }
+                }
+                else {
+                    System.out.print("Would you also like to take a role? (y/n): ");
+                    choice = input.next().charAt(0);
+                    while ((choice != 'y') && (choice != 'n')){
+                        System.out.println("Invalid Input! Please try again: ");
+                        choice = input.nextLine().charAt(0);
+                    }
+                    if (choice == 'y'){
+                        curPlayer.takeRole();
+                    }
+                }
+                game.endTurn();
+            } else if (choice == 't'){
+                System.out.println("Chose to take role");
+                curPlayer.takeRole();
+                game.endTurn();
+            } else if (choice == 'u'){
+                System.out.println("Chose to upgrade");
+                curPlayer.upgrade();
+                System.out.print("Would you also like to move? (y/n): ");
+                choice = input.next().charAt(0);
+                while ((choice != 'y') && (choice != 'n')){
+                    System.out.println("Invalid Input! Please try again: ");
+                    choice = input.nextLine().charAt(0);
+                }
+                if (choice == 'y'){
+                    curPlayer.move();
+                    System.out.print("Would you also like to take a role? (y/n): ");
+                    choice = input.next().charAt(0);
+                    while ((choice != 'y') && (choice != 'n')){
+                        System.out.println("Invalid Input! Please try again: ");
+                        choice = input.nextLine().charAt(0);
+                    }
+                    if (choice == 'y'){
+                        curPlayer.takeRole();
+                    }
+                }
+                game.endTurn();
+            }
+        }
     }
 }
 

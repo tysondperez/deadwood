@@ -25,8 +25,29 @@ public class Player {
 	public void move(){
 
 	}
-	public void takeRole(){
 
+	public void takeRole(){
+		Role rolesAvail[] = curLocation.getRolesAvail();
+		int i = 0;
+		while (rolesAvail[i] != null){
+			if (rolesAvail[i].isOnCard()){
+				System.out.print("On Card: ");
+			} else {
+				System.out.print("Off Card: ");
+			}
+			rolesAvail[i].printInfo();
+		}
+		Scanner input = new Scanner(System.in);
+		System.out.print("Which role would you like to take? (enter number): ");
+		int roleNum = input.nextInt() - 1;
+		while (roleNum >= rolesAvail.length || rolesAvail[roleNum] == null){
+			System.out.print("\nInvalid Input! Please try again: ");
+            roleNum = input.nextInt();
+		}
+		curRole = rolesAvail[roleNum];
+		curRole.take();
+		System.out.println("\nRole Taken! Your role: "+curRole.getName());
+		input.close();
 	}
 
 	public void upgrade(){
@@ -63,17 +84,17 @@ public class Player {
 		if (choice == 'c'){
 			playerBank.updateCred(-(5 * (targetRank - 1)));
 			rank = targetRank;
-			System.out.println("Rank Upgraded! Your new rank is: "+rank);
 		}
 		else if (choice == 'd'){
 			playerBank.updateDol(-((targetRank * targetRank) + targetRank - 2));
 			rank = targetRank;
-			System.out.println("Rank Upgraded! Your new rank is: "+rank);
 		}
+		System.out.println("Rank Upgraded! Your new rank is: "+rank);
+		input.close();
 	}
 	
 	public void rehearse(){
-
+		
 	}
 
 	public void act(){
