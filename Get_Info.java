@@ -1,7 +1,13 @@
+//1 index for cardName, sceneNumberAndBudget (ex. {0,0}), and scene = 3 roles and role levels
+//0 is basically null
+
+//1 location/marker(s), 4 parts/lines/levels/neighbors per location, 
 public class Get_Info {
 	
-	public void cardInfo() {
-		String[] cardName = {"Evil Wears A Hat", 
+	
+	
+	//public void cardName() {
+		public String [] cardName = {"Evil Wears A Hat", 
 						 "Law and the Old West",
 						 "The Life and Times of John Skywater",
 						 "My Years on the Prairie",
@@ -41,9 +47,9 @@ public class Get_Info {
 						 "How They Get Milk",
 						 "Breakin' in Trick Ponies",
 						 "Custer's Other Stands"}; //1 card
-	int[][] sceneNumberAndBudget = {{7, 20, 22, 32, 12, 14, 31, 34, 24, 14, 19, 12, 16, 2, 3, 8, 6, 23, 30, 15, 25, 16, 12, 1, 14, 21, 15, 2, 27, 12, 25, 19, 35, 5, 9, 13, 17, 8, 19, 40},
+	public int[][] sceneNumberAndBudget = {{7, 20, 22, 32, 12, 14, 31, 34, 24, 14, 19, 12, 16, 2, 3, 8, 6, 23, 30, 15, 25, 16, 12, 1, 14, 21, 15, 2, 27, 12, 25, 19, 35, 5, 9, 13, 17, 8, 19, 40},
 									{4, 3, 5, 5, 4, 6, 4, 4, 3, 4, 4, 2, 3, 2, 2, 5, 5, 3, 3, 5, 6, 5, 6, 2, 5, 6, 5, 4, 5, 4, 4, 6, 6, 4, 5, 4, 5, 4, 3, 5}}; // 1 scene and 1 budget
-	String[] scene = {"Calhoun is seperated from the group during a white-knuckled chase near Desperation Bluff.", 
+	 public String[] scene = {"Calhoun is seperated from the group during a white-knuckled chase near Desperation Bluff.", 
 					  "Charlie 'Three Guns' Henderson cooperates with Johnny Law and reluctantly enters the witless protection program.",
 					  "Disheartened by his lack of business acumen and his poor choice of investment partners, John Skywater sets off into the Cree Nation to convince them to kidnap his wife.",
 					  "Virgil and Stacy set out at midnight to track down the stray cows, unaware that they are being pursued by inch-high aliens from outer space.",
@@ -85,7 +91,7 @@ public class Get_Info {
 					  "General George Armstrong Custer clinches another victory at the battle of Little Sands. His trusty steed Cairo is not so lucky."};
 	
 	
-	String[][] partAndLine = {{"Defrocked Priest", "Marshal Canfield", "One-Eyed Man",
+	public String[][] partAndLine = {{"Defrocked Priest", "Marshal Canfield", "One-Eyed Man",
 								"Rug Merchant", "Banker", "Talking Mule",
 								"Auctioneer", "General Custer", null,
 								"Drunk", "Librarian", "Man with Hay",
@@ -166,7 +172,7 @@ public class Get_Info {
 								 "Pull!", "It's about time!", "Yes Sir!",
 								 "Beer me!", "None shall pass!", null,
 								 "Git off a that!", "Boom!", "Here we go again!"}}; //3 roles/lines
-	int[] roleLevel = {2, 3, 4,
+	public int[] roleLevel = {2, 3, 4,
 					   1, 2, 4,
 					   5, 6, 0,
 					   3, 4, 6,
@@ -207,10 +213,10 @@ public class Get_Info {
 					   2, 6, 0,
 					   2, 4, 6}; //3 levels
 	
-	}
 	
-	public void board() {
-		String[] location = {"Train Station",
+	
+	//public void board() {
+		public String[] location = {"Train Station",
 							 "Secret Hideout",
 							 "Church",
 							 "Hotel",
@@ -223,7 +229,7 @@ public class Get_Info {
 							 "trailer",
 							 "office"};
 		
-		String[] neighbor = {"Jail", "General Store", "office", null,
+		public String[] neighbor = {"Jail", "General Store", "office", null,
 							 "Church", "Ranch", "office", null,
 							 "Secret Hideout", "Bank", "Hotel", null,
 							 "trailer", "Bank", "Church", null,
@@ -236,7 +242,7 @@ public class Get_Info {
 							 "Main Street", "Saloon", "Hotel", null,
 							 "Train Station", "Ranch", "Secret Hideout", null};
 		
-		String[][] partsAndLine = {{"Crusty Prospector", "Dragged by Train", "Preacher with Bag", "Cyrus the Gunfighter",
+		public String[][] partsAndLine = {{"Crusty Prospector", "Dragged by Train", "Preacher with Bag", "Cyrus the Gunfighter",
 									"Clumsy Pit Fighter", "Thug with Knife", "Dangerous Tom", "Penny, who is lost",
 									"Dead Man", "Crying Woman", null, null,
 									"Sleeping Drunkard", "Faro Player", "Falls from Balcony", "Australian Bartender",
@@ -258,7 +264,7 @@ public class Get_Info {
 									"Can you be more specific?", "Would you like a large bill, sir?", null, null,
 									"I ain't so sure about that!", "Come up and see me!", null, null}};
 
-		int[] partLevel = {1, 1, 2, 4,
+		public int[] partLevel = {1, 1, 2, 4,
 						   1, 2, 3, 4,
 						   1, 2, 0, 0,
 						   1, 1, 2, 3,
@@ -269,11 +275,41 @@ public class Get_Info {
 						   2, 3, 0, 0,
 						   1, 2, 0, 0};
 		
-		int[] markers = {3, 3, 2, 3, 3, 1, 2, 2, 1, 2}; //assuming that <take> are the shot counters
-	}
+		public int[] markers = {3, 3, 2, 3, 3, 1, 2, 2, 1, 2}; //assuming that <take> are the shot counters
+		
+		public void removeCard (int index){
+			
+			cardName[index] = null;
+		}
+		//returns/gives a card name, a scene number and budget, and three corresponding roles and levels
+		public String getRoles(int index){
+			
+		//	if (index == 0){
+				
+				String card = cardName[index];
+				return card;
+			//	int sceneNumber = sceneNumberAndBudget[index][index];
+			//	int store = index + 2;
+			//	while (index <= store) {
+			//		String role = partAndLine[index][index];
+			//		int level = roleLevel[index];
+			//		index++;
+					
+			//	}
+					
+			/*}
+			else {
+				String card = cardName[index];
+				int sceneNumber = sceneNumberAndBudget[index][index];
+				index = index * 3;
+				int store = index + 2;
+				while (index <= store) {
+					String role = partAndLine[index][index];
+					index++;
+				}
+			}*/
+			
+		}
+ 	
 }
 
-//1 index for cardName, sceneNumberAndBudget (ex. {0,0}), and scene = 3 roles and role levels
-//0 is basically null
-
-//1 location/marker(s), 4 parts/lines/levels/neighbors per location, 
