@@ -22,12 +22,12 @@ public class Player {
 		playerBank = new Bank(this, sC);
 	}
 
-	public void move(){
+	public void move(Scanner input){
 		int numOptions = curLocation.printAdj();
 		boolean choiceListed = false;
 		String[] options = new String[numOptions];
-		Scanner input = new Scanner(System.in);
 		System.out.print("Which space would you like to move to? ");
+		input.nextLine();
 		String choice = input.nextLine();
 		Location adj[] = curLocation.getAdj();
 		for (int i = 0; i < numOptions; i++){
@@ -51,35 +51,65 @@ public class Player {
 				curLocation.addPlayer(this);
 			}
 		}
-		System.out.print("Moved to "+curLocation.getName()+"!");
-		input.close();
+		System.out.println("Moved to "+curLocation.getName()+"!");
 	}
 
-	public void takeRole(){
+	public void takeRole(Scanner input){
 		Role rolesAvail[] = curLocation.getRolesAvail();
 		int i = 0;
-		while (rolesAvail[i] != null){
-			if (rolesAvail[i].isOnCard()){
-				System.out.print("On Card: ");
-			} else {
-				System.out.print("Off Card: ");
+		while (i < rolesAvail.length){
+			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
+				if (rolesAvail[i].isOnCard()){
+					System.out.print("On Card: ");
+				} else {
+					System.out.print("Off Card: ");
+				}
+				rolesAvail[i].printInfo();
 			}
-			rolesAvail[i].printInfo();
+			i++;
 		}
-		Scanner input = new Scanner(System.in);
-		System.out.print("Which role would you like to take? (enter number): ");
-		int roleNum = input.nextInt() - 1;
-		while (roleNum >= rolesAvail.length || rolesAvail[roleNum] == null){
-			System.out.print("\nInvalid Input! Please try again: ");
-            roleNum = input.nextInt();
+		boolean choiceListed = false;
+		System.out.print("Which role would you like to take? ");
+		input.nextLine();
+		String choice = input.nextLine();
+		i = 0;
+		while (i < rolesAvail.length){
+			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
+				if (rolesAvail[i].getName().equals(choice)){
+					choiceListed = true;
+				}
+			}
+			i++;
 		}
-		curRole = rolesAvail[roleNum];
-		curRole.take();
+		while (!choiceListed){
+			System.out.println("Invalid Input! Please try again: ");
+			choice = input.nextLine();
+			i = 0;
+			while (i < rolesAvail.length){
+				if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
+					if (rolesAvail[i].getName().equals(choice)){
+						choiceListed = true;
+					}
+				}
+				i++;
+			}
+		}
+		i = 0;
+		while (i < rolesAvail.length && rolesAvail[i] != null){
+			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
+				System.out.println("i: "+i+", choice: "+choice+"rolesAvail[i].gN: "+rolesAvail[i].getName()+"rA[i]gn .e(choice)"+rolesAvail[i].getName().equals(choice));
+				if (rolesAvail[i].getName().equals(choice)){
+					curRole = rolesAvail[i];
+					curRole.take();
+					i = rolesAvail.length - 1;
+				}
+			}
+			i++;
+		}
 		System.out.println("\nRole Taken! Your role: "+curRole.getName());
-		input.close();
 	}
 
-	public void upgrade(){
+	public void upgrade(Scanner input){
 		System.out.println("Current Rank: "+rank);
         System.out.println("Available Credits: "+playerBank.getCredits());
         System.out.println("Available Dollars: "+playerBank.getDollars());
@@ -90,7 +120,6 @@ public class Player {
 		System.out.println("     5     |     28    |     20    ");
 		System.out.println("     6     |     40    |     25    ");
 		System.out.print("Which rank would you like to upgrade to? ");
-		Scanner input = new Scanner(System.in);
 		int targetRank = input.nextInt();
 		while (!canUpgrade(targetRank)){
 			System.out.println("Insufficient Funds! Please select another rank: ");
@@ -119,7 +148,6 @@ public class Player {
 			rank = targetRank;
 		}
 		System.out.println("Rank Upgraded! Your new rank is: "+rank);
-		input.close();
 	}
 	
 	public void rehearse(){

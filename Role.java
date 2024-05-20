@@ -32,6 +32,7 @@ public class Role {
     }
 
     public boolean isOnCard(){
+        System.out.println("shouldn't have been called");
         return false;
     }
 

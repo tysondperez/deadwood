@@ -99,16 +99,33 @@ public class Location {
 
 	public void dealScene(Scene s){
 		scene = s;
+		Role[] sRoles = scene.getRoles();
+		for (int i = 0; i < sRoles.length; i++){
+			roles[4 + i] = sRoles[i];
+		}
 	}
 
 	public Role[] getRolesAvail(){
-		Role ret[] = new Role[roles.length];
+		Role[] ret = new Role[roles.length];
 		int j = 0;
 		for (int i = 0; i < roles.length; i++){
 			if (roles[i] != null){
 				if (!roles[i].isTaken()){
 					ret[j] = roles[i];
 					j++;
+				}
+			}
+		}
+		return ret;
+	}
+
+	public boolean hasRolesAvail(){
+		boolean ret = false;
+		int j = 0;
+		for (int i = 0; i < roles.length; i++){
+			if (roles[i] != null && roles[i].getName() != null){
+				if (!roles[i].isTaken()){
+					ret = true;
 				}
 			}
 		}

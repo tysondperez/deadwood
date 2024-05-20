@@ -15,10 +15,14 @@ public class Scene {
 		assignedTo = l;
 		roles = new Role[3];
 		for (int j = 0; j < roles.length; j++){
-			roles[j] = new Role(i, j, true);
+			roles[j] = new On_Card(i, j);
 		}
 	}
 	
+	public Role[] getRoles(){
+		return roles;
+	}
+
 	public void wrapScene(){
 		//for every person on scene
 		//determine if on using Role class

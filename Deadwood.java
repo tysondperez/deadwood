@@ -43,7 +43,7 @@ public class Deadwood{
                 curPlayer.rehearse();
             } else if (choice == 'm'){
                 System.out.println("Chose to move");
-                curPlayer.move();
+                curPlayer.move(input);
                 if ((curPlayer.getLocation().getName().equals("Casting Office"))){
                     if (!curPlayer.canUpgrade()){
                         System.out.println("You're on the Casting Office, but you can't upgrade right now!");
@@ -55,29 +55,33 @@ public class Deadwood{
                             choice = input.next().charAt(0);
                         }
                         if (choice == 'y'){
-                            curPlayer.upgrade();
+                            curPlayer.upgrade(input);
                         }
                     }
                 }
-                else {
-                    System.out.print("Would you also like to take a role? (y/n): ");
-                    choice = input.next().charAt(0);
-                    while ((choice != 'y') && (choice != 'n')){
-                        System.out.println("Invalid Input! Please try again: ");
+                else if (!curPlayer.getLocation().getName().equals("Trailers")){
+                    if (!curPlayer.getLocation().hasRolesAvail()){
+                        System.out.println("This location has no available roles!");
+                    } else {
+                        System.out.print("Would you also like to take a role? (y/n): ");
                         choice = input.next().charAt(0);
-                    }
-                    if (choice == 'y'){
-                        curPlayer.takeRole();
+                        while ((choice != 'y') && (choice != 'n')){
+                            System.out.println("Invalid Input! Please try again: ");
+                            choice = input.next().charAt(0);
+                        }
+                        if (choice == 'y'){
+                            curPlayer.takeRole(input);
+                        }
                     }
                 }
                 game.endTurn();
             } else if (choice == 't'){
                 System.out.println("Chose to take role");
-                curPlayer.takeRole();
+                curPlayer.takeRole(input);
                 game.endTurn();
             } else if (choice == 'u'){
                 System.out.println("Chose to upgrade");
-                curPlayer.upgrade();
+                curPlayer.upgrade(input);
                 System.out.print("Would you also like to move? (y/n): ");
                 choice = input.next().charAt(0);
                 while ((choice != 'y') && (choice != 'n')){
@@ -85,15 +89,20 @@ public class Deadwood{
                     choice = input.nextLine().charAt(0);
                 }
                 if (choice == 'y'){
-                    curPlayer.move();
-                    System.out.print("Would you also like to take a role? (y/n): ");
-                    choice = input.next().charAt(0);
-                    while ((choice != 'y') && (choice != 'n')){
-                        System.out.println("Invalid Input! Please try again: ");
-                        choice = input.nextLine().charAt(0);
-                    }
-                    if (choice == 'y'){
-                        curPlayer.takeRole();
+                    curPlayer.move(input);
+                    System.out.println(curPlayer.getLocation().hasRolesAvail());
+                    if (!curPlayer.getLocation().hasRolesAvail()){
+                        System.out.println("This location has no available roles!");
+                    } else {
+                        System.out.print("Would you also like to take a role? (y/n): ");
+                        choice = input.next().charAt(0);
+                        while ((choice != 'y') && (choice != 'n')){
+                            System.out.println("Invalid Input! Please try again: ");
+                            choice = input.next().charAt(0);
+                        }
+                        if (choice == 'y'){
+                            curPlayer.takeRole(input);
+                        }
                     }
                 }
                 game.endTurn();

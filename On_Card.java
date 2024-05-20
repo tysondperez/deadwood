@@ -10,7 +10,8 @@ public class On_Card extends Role {
     	}
     	
     }
-
+	
+	@Override
 	public boolean isOnCard(){
 		return true;
 	}

@@ -15,6 +15,7 @@ public class Off_Card extends Role {
         
     }
 
+	@Override
 	public boolean isOnCard(){
 		return false;
 	}

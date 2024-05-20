@@ -44,6 +44,8 @@ public class GameManager {
         for (int i = 1; i <= numPlayers; i++){
             players[i - 1] = new Player(i, startCred, startRank);
         }
+
+        Deck.dealCards();
         System.out.println("Game Started!\n");
     }
 
@@ -144,8 +146,12 @@ public class GameManager {
         if (curPlayer.getRole() == null){
             System.out.println("Move (m)");
             options.add('m');
-            System.out.println("Take a Role (t)");
-            options.add('t');
+            if (!(curPlayer.getLocation().getName().equals("Casting Office")) && !(curPlayer.getLocation().getName().equals("Trailers"))){
+                if (curPlayer.getLocation().hasRolesAvail()){
+                    System.out.println("Take a Role (t)");
+                    options.add('t');   
+                }
+            }
         } else {
             System.out.println("Act (a)");
             options.add('a');
