@@ -226,19 +226,19 @@ public class Get_Info {
 							 "Ranch",
 							 "Bank",
 							 "Saloon",
-							 "trailer",
-							 "office"};
+							 "Trailers",
+							 "Casting Office"};
 		
-		public String[] neighbor = {"Jail", "General Store", "office", null,
-							 "Church", "Ranch", "office", null,
+		public String[] neighbor = {"Jail", "General Store", "Casting Office", null,
+							 "Church", "Ranch", "Casting Office", null,
 							 "Secret Hideout", "Bank", "Hotel", null,
-							 "trailer", "Bank", "Church", null,
-							 "trailer", "Jail", "Saloon", null,
+							 "Trailers", "Bank", "Church", null,
+							 "Trailers", "Jail", "Saloon", null,
 							 "Main Street", "General Store", "Train Station", null,
 							 "Ranch", "Train Station", "Jail", "Saloon",
-							 "office", "General Store", "Secret Hideout", "Bank",
+							 "Catsing Office", "General Store", "Secret Hideout", "Bank",
 							 "Saloon", "Church", "Ranch", "Hotel",
-							 "Main Street", "General Store", "Bank", "trailer",
+							 "Main Street", "General Store", "Bank", "Trailers",
 							 "Main Street", "Saloon", "Hotel", null,
 							 "Train Station", "Ranch", "Secret Hideout", null};
 		
@@ -313,7 +313,11 @@ public class Get_Info {
 			
 		}
 		
-		
+		public String[] getBoardLocations(){ //get all board locations
+			
+			return location;
+									
+		}
  	
 }
 
