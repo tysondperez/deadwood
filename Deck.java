@@ -14,20 +14,19 @@ public class Deck{
         int i = 0;
         while (i <= 9){
         	int rand = (int)(Math.random() * range) + min; //rand keeps track of indexes we're working with
-        	name[i] = card.getRoles(rand);               //get 10 cards to play with
+        	name[i] = card.getCardName(rand);               //get 10 cards to play with
         	if (name[i] == null) {
         		while (name[i] != null)
         		{
         			rand = (int)(Math.random() * range) + min;
-                	name[i] = card.getRoles(rand);
+                	name[i] = card.getCardName(rand);
         		}
         	}
         	randInd[i] = rand;
         	card.removeCard(rand);
         	i++;
             
-        }
-        
+        }     
         		
 	}
 	
