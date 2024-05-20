@@ -1,12 +1,14 @@
 @SuppressWarnings ("unused")
 public class Deck{
-	
+//new edit: change name to static, add object Scene	
 	Get_Info card = new Get_Info();
-	public String[] name = new String[9]; //keeps track of the card name
+	Scene findBudget = new Scene();
+	public static String[] name = new String[9]; //keeps track of the card name
 	public int[] randInd = new int[9];  //keeps track of the index numbers
 	private final int max = 39;
 	private final int min = 0;
-		
+	
+	
 	public void dealCards(){
 		//40 total cards, get 10 indexes at random
         
@@ -23,21 +25,25 @@ public class Deck{
         		}
         	}
         	randInd[i] = rand;
+        	findBudget.getBudget(rand); //new edit
         	card.removeCard(rand);
         	i++;
             
-        }     
+        }
+       
         		
 	}
 	
+
 	public void resetCards() {
 		int i = 0;
-		while (i <= 9)
-		{
+		while (i <= 9){
 			name[i] = null;
 			randInd[i] = 0;
 			i++;
+	
 		}
+		findBudget.resetDay();
 		
 	}
 }
