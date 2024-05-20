@@ -97,7 +97,6 @@ public class Player {
 		i = 0;
 		while (i < rolesAvail.length && rolesAvail[i] != null){
 			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
-				System.out.println("i: "+i+", choice: "+choice+"rolesAvail[i].gN: "+rolesAvail[i].getName()+"rA[i]gn .e(choice)"+rolesAvail[i].getName().equals(choice));
 				if (rolesAvail[i].getName().equals(choice)){
 					curRole = rolesAvail[i];
 					curRole.take();

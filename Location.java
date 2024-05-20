@@ -97,6 +97,10 @@ public class Location {
 		return adjLocations;
 	}
 
+	public int getShots(){
+		return shotCounters;
+	}
+
 	public void dealScene(Scene s){
 		scene = s;
 		Role[] sRoles = scene.getRoles();
@@ -121,11 +125,22 @@ public class Location {
 
 	public boolean hasRolesAvail(){
 		boolean ret = false;
-		int j = 0;
 		for (int i = 0; i < roles.length; i++){
 			if (roles[i] != null && roles[i].getName() != null){
 				if (!roles[i].isTaken()){
 					ret = true;
+				}
+			}
+		}
+		return ret;
+	}
+
+	public int getNumRolesAvail(){
+		int ret = 0;
+		for (int i = 0; i < roles.length; i++){
+			if (roles[i] != null && roles[i].getName() != null){
+				if (!roles[i].isTaken()){
+					ret++;
 				}
 			}
 		}
@@ -138,6 +153,11 @@ public class Location {
 		for (int i = 0; i < adjLocations.length; i++){
 			if (adjLocations[i] != null){
 				System.out.println(adjLocations[i].getName());
+				int sR = adjLocations[i].getShots();
+				if (sR > 0){
+					System.out.println("\tRoles Available: "+adjLocations[i].getNumRolesAvail());
+					System.out.println("\tShots Remaining: "+sR);
+				}
 				ret ++;
 			}
 		}
