@@ -13,10 +13,15 @@ public class Location {
 
 	public Location(int i){
 		name = Get_Info.location[i];
-		roles = new Role[7];
 		adjLocations = new Location[4];
-		for (int j = 0; j < 4; j++){
-			roles[j] = new Off_Card(i, j);
+		if (i >= 10){
+			roles = null;
+		}
+		else {
+			roles = new Role[7];
+			for (int j = 0; j < 4; j++){
+				roles[j] = new Off_Card(i, j);
+			}
 		}
 		if (name.equals("Casting Office") || name.equals("Trailers")){
 			shotCounters = -1;
@@ -90,6 +95,10 @@ public class Location {
 
 	public Location[] getAdj(){
 		return adjLocations;
+	}
+
+	public void dealScene(Scene s){
+		scene = s;
 	}
 
 	public Role[] getRolesAvail(){

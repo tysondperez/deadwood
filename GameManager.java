@@ -37,8 +37,7 @@ public class GameManager {
         for (int i = 0; i < locations.length; i++){
             locations[i].setNeighbors(i, locations);
         }
-        //also temp code for numScenes? idk how many
-        scenesLeft = 20;
+        scenesLeft = 10;
 
         //now code to create the players and store them in array
         players = new Player[numPlayers];
@@ -62,19 +61,32 @@ public class GameManager {
 
     public void endDay(){
         //move players back to trailer, 
-        daysLeft = daysLeft - 1;
+        daysLeft--;
         if (daysLeft == 0){
+            endGame();
             //add up each players total
             //compare the totals
             //declare winner
             //end game
+        } else {
+            scenesLeft = 10;
+            Deck.dealCards();
+            for (int i = 0; i < numPlayers; i++){
+                players[i].getLocation().removePlayer(players[i]);
+                players[i].setLocation(locations[10]);
+                locations[10].addPlayer(players[i]);
+            }
         }
         //i dont think we need these lines
           //locations = new Location[1];
           //locations[0] = new Location("Trailer");
         //locations shouldn't change, only the scenes
         //locations are the spots on the board, scenes are the cards
-        scenesLeft = 20;
+        
+    }
+
+    public void endGame(){
+        
     }
 
     public static int rollDice(){ //change to static, maybe temp?

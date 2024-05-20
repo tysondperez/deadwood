@@ -7,11 +7,11 @@ public class Role {
     
     public Role (int i, int j, boolean on){
         if (on){
-            name = Get_Info.part[i + j];
-            level = Get_Info.roleLevel[i + j];
+            name = Get_Info.part[i*3 + j];
+            level = Get_Info.roleLevel[i*3 + j];
         } else {
-            name = Get_Info.partsAndLine[0][i + j];
-            level = Get_Info.partLevel[i + j];
+            name = Get_Info.partsAndLine[0][i*4 + j];
+            level = Get_Info.partLevel[i*4 + j];
         }
         taken = false;
     }

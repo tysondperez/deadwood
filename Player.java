@@ -51,7 +51,7 @@ public class Player {
 				curLocation.addPlayer(this);
 			}
 		}
-		System.out.println("Moved to "+curLocation.getName()+"!");
+		System.out.print("Moved to "+curLocation.getName()+"!");
 		input.close();
 	}
 
@@ -165,6 +165,10 @@ public class Player {
 
 	public Location getLocation(){
 		return curLocation;
+	}
+
+	public void setLocation(Location l){
+		curLocation = l;
 	}
 
 	public Bank getBank(){
