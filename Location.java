@@ -67,6 +67,15 @@ public class Location {
 		// }
 	}
 
+	public boolean checkWrap(){
+		if (curShotCounters == 0){
+			awardBonuses();
+			scene = null;
+			return true;
+		}
+		return false;
+	}
+
 	public void awardBonuses(){
 		//check if there are more than one players and at least one player on the card
 		/*
@@ -133,7 +142,7 @@ public class Location {
 		Role[] ret = new Role[roles.length];
 		int j = 0;
 		for (int i = 0; i < roles.length; i++){
-			if (roles[i] != null){
+			if (roles[i] != null && roles[i].getName() != null){
 				if (!roles[i].isTaken()){
 					ret[j] = roles[i];
 					j++;
@@ -144,6 +153,9 @@ public class Location {
 	}
 
 	public boolean hasRolesAvail(){
+		if (scene == null){
+			return false;
+		}
 		boolean ret = false;
 		for (int i = 0; i < roles.length; i++){
 			if (roles[i] != null && roles[i].getName() != null){
@@ -156,6 +168,9 @@ public class Location {
 	}
 
 	public int getNumRolesAvail(){
+		if (scene == null){
+			return 0;
+		}
 		int ret = 0;
 		for (int i = 0; i < roles.length; i++){
 			if (roles[i] != null && roles[i].getName() != null){
@@ -175,8 +190,7 @@ public class Location {
 				System.out.println(adjLocations[i].getName());
 				int sR = adjLocations[i].getShots();
 				if (sR > 0){
-					System.out.println("\tRoles Available: "+adjLocations[i].getNumRolesAvail());
-					System.out.println("\tShots Remaining: "+sR);
+					adjLocations[i].getScene().printSceneInfo();
 				}
 				ret ++;
 			}

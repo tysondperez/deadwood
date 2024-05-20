@@ -50,6 +50,9 @@ public class GameManager {
     }
 
     public void endTurn(){
+        if (players[currentTurn - 1].getLocation().checkWrap()){
+            scenesLeft--;
+        }
         System.out.println("Ending Turn...\n\n\n");
         if (currentTurn == numPlayers){
             currentTurn = 1;
@@ -77,13 +80,7 @@ public class GameManager {
                 players[i].setLocation(locations[10]);
                 locations[10].addPlayer(players[i]);
             }
-        }
-        //i dont think we need these lines
-          //locations = new Location[1];
-          //locations[0] = new Location("Trailer");
-        //locations shouldn't change, only the scenes
-        //locations are the spots on the board, scenes are the cards
-        
+        }     
     }
 
     public void endGame(){
@@ -129,6 +126,7 @@ public class GameManager {
             System.out.println("Role: None");
         }else {
             System.out.println("Role: "+curRole.getName());
+            System.out.println("Scene Budget: "+players[currentTurn - 1].getLocation().getScene().getBudget());
         }
         System.out.println("\nLocations:");
         for (int i = 0; i < numPlayers; i++){
@@ -149,7 +147,7 @@ public class GameManager {
             System.out.println("Move (m)");
             options.add('m');
             if (!(curPlayer.getLocation().getName().equals("Casting Office")) && !(curPlayer.getLocation().getName().equals("Trailers"))){
-                if (curPlayer.getLocation().hasRolesAvail()){
+                if (curPlayer.getLocation().hasRolesAvail() && curPlayer.canTakeRole()){
                     System.out.println("Take a Role (t)");
                     options.add('t');   
                 }

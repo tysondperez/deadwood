@@ -7,6 +7,7 @@ public class Scene {
 	private String name;
 	private int budget;
 	private Location assignedTo;
+	private boolean faceUp;
 
 	//this method is called with a random unused i from 0-39
 	public Scene(int i, Location l){
@@ -17,6 +18,7 @@ public class Scene {
 		for (int j = 0; j < roles.length; j++){
 			roles[j] = new On_Card(i, j);
 		}
+		faceUp = false;
 	}
 	
 	public Role[] getRoles(){
@@ -27,11 +29,28 @@ public class Scene {
 		return budget;
 	}
 
-	public void wrapScene(){
-		//for every person on scene
-		//determine if on using Role class
-		//then credit based on that
-		
+	public void flip(){
+		if (!faceUp){
+			faceUp = true;
+		}
 	}
 
+	public void printSceneInfo(){
+		if (faceUp){
+			System.out.println("\tRoles Available: "+assignedTo.getNumRolesAvail());
+			System.out.println("\tShots Remaining: "+assignedTo.getShots());
+		} else {
+			int count = 0;
+			Role[] locRoles = assignedTo.getRolesAvail();
+			for (int i = 0; i < locRoles.length; i++){
+				if (locRoles[i] != null && locRoles[i].getName() != null){
+					if (!locRoles[i].isTaken() && !locRoles[i].isOnCard()){
+						count++;
+					}
+				}
+			}
+			System.out.println("\tRoles Available: "+count+" + ??? on card");
+			System.out.println("\tShots Remaining: ");
+		}
+	}
 }

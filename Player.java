@@ -53,6 +53,7 @@ public class Player {
 				curLocation.addPlayer(this);
 			}
 		}
+		curLocation.getScene().flip();
 		System.out.println("Moved to "+curLocation.getName()+"!");
 	}
 
@@ -61,7 +62,10 @@ public class Player {
 		int i = 0;
 		while (i < rolesAvail.length){
 			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
-				if (rolesAvail[i].isOnCard()){
+				if (rolesAvail[i].getLevel() > rank){
+					System.out.print("Unavailable (rank too low): ");
+				}
+				else if (rolesAvail[i].isOnCard()){
 					System.out.print("On Card: ");
 				} else {
 					System.out.print("Off Card: ");
@@ -78,19 +82,27 @@ public class Player {
 		while (i < rolesAvail.length){
 			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
 				if (rolesAvail[i].getName().equals(choice)){
-					choiceListed = true;
+					if (rolesAvail[i].getLevel() > rank){
+						System.out.print("Role Unavailable - ");
+					} else {
+						choiceListed = true;
+					}
 				}
 			}
 			i++;
 		}
 		while (!choiceListed){
-			System.out.println("Invalid Input! Please try again: ");
+			System.out.print("Invalid Input! Please try again: ");
 			choice = input.nextLine();
 			i = 0;
 			while (i < rolesAvail.length){
 				if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
 					if (rolesAvail[i].getName().equals(choice)){
-						choiceListed = true;
+						if (rolesAvail[i].getLevel() > rank){
+							System.out.print("Role Unavailable - ");
+						} else {
+							choiceListed = true;
+						}
 					}
 				}
 				i++;
@@ -227,6 +239,18 @@ public class Player {
 
 	public Bank getBank(){
 		return playerBank;
+	}
+
+	public boolean canTakeRole() {
+		Role[] avail = curLocation.getRolesAvail();
+		for (int i = 0; i < avail.length; i++){
+			if (avail[i] != null && avail[i].getName() != null){
+				if (avail[i].getLevel() <= rank){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

@@ -59,8 +59,8 @@ public class Deadwood{
                     }
                 }
                 else if (!curPlayer.getLocation().getName().equals("Trailers")){
-                    if (!curPlayer.getLocation().hasRolesAvail()){
-                        System.out.println("This location has no available roles!");
+                    if (!curPlayer.getLocation().hasRolesAvail() || !curPlayer.canTakeRole()){
+                        System.out.println("This location has no available roles for you!");
                     } else {
                         System.out.print("Would you also like to take a role? (y/n): ");
                         choice = input.next().charAt(0);
@@ -88,8 +88,8 @@ public class Deadwood{
                 if (choice == 'y'){
                     curPlayer.move(input);
                     System.out.println(curPlayer.getLocation().hasRolesAvail());
-                    if (!curPlayer.getLocation().hasRolesAvail()){
-                        System.out.println("This location has no available roles!");
+                    if (!curPlayer.getLocation().hasRolesAvail() || !curPlayer.canTakeRole()){
+                        System.out.println("This location has no available roles for you!");
                     } else {
                         System.out.print("Would you also like to take a role? (y/n): ");
                         choice = input.next().charAt(0);
