@@ -13,6 +13,8 @@ public class Location {
 
 	public Location(int i){
 		name = Get_Info.location[i];
+		roles = new Role[7];
+		adjLocations = new Location[4];
 		for (int j = 0; j < 4; j++){
 			roles[j] = new Off_Card(i, j);
 		}
@@ -32,13 +34,24 @@ public class Location {
 
 	public void setNeighbors(int x, Location[] locations){
 		for (int i = 0; i < 4; i++){
-			String nName = Get_Info.neighbor[x + i];
+			String nName = Get_Info.neighbor[4*x + i];
 			int j = 0;
-			while (!locations[j].getName().equals(nName)){
+			while (nName != null && !locations[j].getName().equals(nName)){
 				j++;
+				if (j == 12){
+					System.out.println(nName);
+				}
 			}
-			adjLocations[i] = locations[j];
+			if (nName != null){
+				adjLocations[i] = locations[j];
+			} else {
+				adjLocations[i] = null;
+			}
 		}
+		// System.out.println("To recap, neighbors of "+locations[x].getName()+"are: ");
+		// for (int i = 0; i < 4; i++){
+		// 	System.out.println(locations[x].adjLocations[i].getName());
+		// }
 	}
 
 	public void awardBonuses(){
@@ -67,8 +80,16 @@ public class Location {
 		playersHere.add(p);
 	}
 
+	public void removePlayer (Player p){
+		playersHere.remove(p);
+	}
+
 	public String getName(){
 		return name;
+	}
+
+	public Location[] getAdj(){
+		return adjLocations;
 	}
 
 	public Role[] getRolesAvail(){
@@ -80,6 +101,18 @@ public class Location {
 					ret[j] = roles[i];
 					j++;
 				}
+			}
+		}
+		return ret;
+	}
+
+	public int printAdj(){
+		int ret = 0;
+		System.out.println("The Locations adjacent to "+name+" are: ");
+		for (int i = 0; i < adjLocations.length; i++){
+			if (adjLocations[i] != null){
+				System.out.println(adjLocations[i].getName());
+				ret ++;
 			}
 		}
 		return ret;

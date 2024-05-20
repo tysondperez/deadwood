@@ -49,6 +49,7 @@ public class GameManager {
     }
 
     public void endTurn(){
+        System.out.println("Ending Turn...\n\n\n");
         if (currentTurn == numPlayers){
             currentTurn = 1;
         } else {

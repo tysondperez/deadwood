@@ -16,14 +16,42 @@ public class Player {
 		//set role to null
 		curRole = null;
 		//set default loc to Trailer
-		curLocation = GameManager.locations[0];
+		curLocation = GameManager.locations[10];
 		curLocation.addPlayer(this);
 		//create Bank w default vals
 		playerBank = new Bank(this, sC);
 	}
 
 	public void move(){
-
+		int numOptions = curLocation.printAdj();
+		boolean choiceListed = false;
+		String[] options = new String[numOptions];
+		Scanner input = new Scanner(System.in);
+		System.out.print("Which space would you like to move to? ");
+		String choice = input.nextLine();
+		Location adj[] = curLocation.getAdj();
+		for (int i = 0; i < numOptions; i++){
+			if (adj[i].getName().equals(choice)){
+				choiceListed = true;
+			}
+		}
+		while (!choiceListed){
+			System.out.println("Invalid Input! Please try again: ");
+			choice = input.nextLine();
+			for (int i = 0; i < numOptions; i++){
+				if (adj[i].getName().equals(choice)){
+					choiceListed = true;
+				}
+			}
+		}
+		for (int i = 0; i < numOptions; i++){
+			if (adj[i].getName().equals(choice)){
+				curLocation.removePlayer(this);
+				curLocation = adj[i];
+				curLocation.addPlayer(this);
+			}
+		}
+		System.out.println("Moved to "+curLocation.getName()+"!");
 	}
 
 	public void takeRole(){

@@ -29,7 +29,7 @@ public class Deadwood{
             }
             while (!options.contains(choice)){
                 System.out.println("Invalid Input! Please try again: ");
-                choice = input.nextLine().charAt(0);
+                choice = input.next().charAt(0);
             }
             Player curPlayer = game.getPlayer();
             if (choice == 'e'){
@@ -44,15 +44,19 @@ public class Deadwood{
             } else if (choice == 'm'){
                 System.out.println("Chose to move");
                 curPlayer.move();
-                if ((curPlayer.getLocation().getName().equals("Casting Office")) && curPlayer.canUpgrade()){
-                    System.out.print("Would you also like to upgrade? (y/n): ");
-                    choice = input.next().charAt(0);
-                    while ((choice != 'y') && (choice != 'n')){
-                        System.out.println("Invalid Input! Please try again: ");
-                        choice = input.nextLine().charAt(0);
-                    }
-                    if (choice == 'y'){
-                        curPlayer.upgrade();
+                if ((curPlayer.getLocation().getName().equals("Casting Office"))){
+                    if (!curPlayer.canUpgrade()){
+                        System.out.println("You're on the Casting Office, but you can't upgrade right now!");
+                    } else {
+                        System.out.print("Would you also like to upgrade? (y/n): ");
+                        choice = input.next().charAt(0);
+                        while ((choice != 'y') && (choice != 'n')){
+                            System.out.println("Invalid Input! Please try again: ");
+                            choice = input.next().charAt(0);
+                        }
+                        if (choice == 'y'){
+                            curPlayer.upgrade();
+                        }
                     }
                 }
                 else {
@@ -60,7 +64,7 @@ public class Deadwood{
                     choice = input.next().charAt(0);
                     while ((choice != 'y') && (choice != 'n')){
                         System.out.println("Invalid Input! Please try again: ");
-                        choice = input.nextLine().charAt(0);
+                        choice = input.next().charAt(0);
                     }
                     if (choice == 'y'){
                         curPlayer.takeRole();
