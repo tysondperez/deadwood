@@ -5,6 +5,17 @@ public class Role {
     private boolean taken;
     private String name;
     
+    public Role (int i, int j, boolean on){
+        if (on){
+            name = Get_Info.part[i + j];
+            level = Get_Info.roleLevel[i + j];
+        } else {
+            name = Get_Info.partsAndLine[0][i + j];
+            level = Get_Info.partLevel[i + j];
+        }
+        taken = false;
+    }
+
     public void viewScene()
     {
     	//at location, view the scene, get available roles and rank requirement from xml file

@@ -1,4 +1,8 @@
 public class Off_Card extends Role {
+
+	public Off_Card (int i, int j){
+		super(i, j, false);
+	}
     
     public void getRewards(boolean success){
     	

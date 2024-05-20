@@ -7,7 +7,7 @@ public class Get_Info {
 	
 	
 	//-----------------------------------------------card info-----------------------------------------------------------------------------------------------
-		public String [] cardName = {"Evil Wears A Hat", 
+		public static String [] cardName = {"Evil Wears A Hat", 
 						 "Law and the Old West",
 						 "The Life and Times of John Skywater",
 						 "My Years on the Prairie",
@@ -47,9 +47,9 @@ public class Get_Info {
 						 "How They Get Milk",
 						 "Breakin' in Trick Ponies",
 						 "Custer's Other Stands"}; //1 card
-	 public int[] sceneNumber = {7, 20, 22, 32, 12, 14, 31, 34, 24, 14, 19, 12, 16, 2, 3, 8, 6, 23, 30, 15, 25, 16, 12, 1, 14, 21, 15, 2, 27, 12, 25, 19, 35, 5, 9, 13, 17, 8, 19, 40};
-	 public int[] budget = {4, 3, 5, 5, 4, 6, 4, 4, 3, 4, 4, 2, 3, 2, 2, 5, 5, 3, 3, 5, 6, 5, 6, 2, 5, 6, 5, 4, 5, 4, 4, 6, 6, 4, 5, 4, 5, 4, 3, 5}; // 1 scene and 1 budget
-	 public String[] scene = {"Calhoun is seperated from the group during a white-knuckled chase near Desperation Bluff.", 
+	 public static int[] sceneNumber = {7, 20, 22, 32, 12, 14, 31, 34, 24, 14, 19, 12, 16, 2, 3, 8, 6, 23, 30, 15, 25, 16, 12, 1, 14, 21, 15, 2, 27, 12, 25, 19, 35, 5, 9, 13, 17, 8, 19, 40};
+	 public static int[] budget = {4, 3, 5, 5, 4, 6, 4, 4, 3, 4, 4, 2, 3, 2, 2, 5, 5, 3, 3, 5, 6, 5, 6, 2, 5, 6, 5, 4, 5, 4, 4, 6, 6, 4, 5, 4, 5, 4, 3, 5}; // 1 scene and 1 budget
+	 public static String[] scene = {"Calhoun is seperated from the group during a white-knuckled chase near Desperation Bluff.", 
 					  "Charlie 'Three Guns' Henderson cooperates with Johnny Law and reluctantly enters the witless protection program.",
 					  "Disheartened by his lack of business acumen and his poor choice of investment partners, John Skywater sets off into the Cree Nation to convince them to kidnap his wife.",
 					  "Virgil and Stacy set out at midnight to track down the stray cows, unaware that they are being pursued by inch-high aliens from outer space.",
@@ -91,7 +91,7 @@ public class Get_Info {
 					  "General George Armstrong Custer clinches another victory at the battle of Little Sands. His trusty steed Cairo is not so lucky."};
 	
 	
-	public String[] part = {"Defrocked Priest", "Marshal Canfield", "One-Eyed Man",
+	public static String[] part = {"Defrocked Priest", "Marshal Canfield", "One-Eyed Man",
 								"Rug Merchant", "Banker", "Talking Mule",
 								"Auctioneer", "General Custer", null,
 								"Drunk", "Librarian", "Man with Hay",
@@ -132,7 +132,7 @@ public class Get_Info {
 								"Fraternity Pledge", "Man with Sword", null,
 								"Farmer", "Exploding Horse", "Jack"}; 
 			
-    public String[] line = 	 {"Look out below!", "Hold fast!", "Balderdash!",
+    public static String[] line = 	 {"Look out below!", "Hold fast!", "Balderdash!",
 								 "Don't leave my store!", "Trust me", "Nice work, Johnny!",
 								 "Going Once!", "Go West!", null,
 								 "Where's Willard?", "Shhhhh!", "Hey!",
@@ -172,7 +172,7 @@ public class Get_Info {
 								 "Pull!", "It's about time!", "Yes Sir!",
 								 "Beer me!", "None shall pass!", null,
 								 "Git off a that!", "Boom!", "Here we go again!"}; //3 roles/lines
-	public int[] roleLevel = {2, 3, 4,
+	public static int[] roleLevel = {2, 3, 4,
 					   1, 2, 4,
 					   5, 6, 0,
 					   3, 4, 6,
@@ -216,7 +216,7 @@ public class Get_Info {
 	
 	
 	//-------------------------------------------board info----------------------------------------------------------------------------------------------
-		public String[] location = {"Train Station",
+		public static String[] location = {"Train Station",
 							 "Secret Hideout",
 							 "Church",
 							 "Hotel",
@@ -229,7 +229,7 @@ public class Get_Info {
 							 "Trailers",
 							 "Casting Office"};
 
-		public String[] neighbor = {"Jail", "General Store", "Casting Office", null,
+		public static String[] neighbor = {"Jail", "General Store", "Casting Office", null,
 							 "Church", "Ranch", "Casting Office", null,
 							 "Secret Hideout", "Bank", "Hotel", null,
 							 "Trailers", "Bank", "Church", null,
@@ -245,7 +245,7 @@ public class Get_Info {
 							 "Main Street", "Saloon", "Hotel", null,
 							 "Train Station", "Ranch", "Secret Hideout", null};
 		
-		public String[][] partsAndLine = {{"Crusty Prospector", "Dragged by Train", "Preacher with Bag", "Cyrus the Gunfighter",
+		public static String[][] partsAndLine = {{"Crusty Prospector", "Dragged by Train", "Preacher with Bag", "Cyrus the Gunfighter",
 									"Clumsy Pit Fighter", "Thug with Knife", "Dangerous Tom", "Penny, who is lost",
 									"Dead Man", "Crying Woman", null, null,
 									"Sleeping Drunkard", "Faro Player", "Falls from Balcony", "Australian Bartender",
@@ -267,7 +267,7 @@ public class Get_Info {
 									"Can you be more specific?", "Would you like a large bill, sir?", null, null,
 									"I ain't so sure about that!", "Come up and see me!", null, null}};
 
-		public int[] partLevel = {1, 1, 2, 4,
+		public static int[] partLevel = {1, 1, 2, 4,
 						   1, 2, 3, 4,
 						   1, 2, 0, 0,
 						   1, 1, 2, 3,
@@ -278,7 +278,7 @@ public class Get_Info {
 						   2, 3, 0, 0,
 						   1, 2, 0, 0};
 		
-		public int[] markers = {3, 3, 2, 3, 3, 1, 2, 2, 1, 2}; //assuming that <take> are the shot counters
+		public static int[] markers = {3, 3, 2, 3, 3, 1, 2, 2, 1, 2}; //assuming that <take> are the shot counters
 		
 	//----------------------------------actual methods------------------------------------------------------------------------------------	
 		//replaces a card name with null
@@ -314,13 +314,6 @@ public class Get_Info {
 				}
 			}*/
 			
-		}
-		
-		public String[] getBoardLocations(){ //get all board locations
-			
-			return location;
-									
-		}
- 	
+		}	
 }
 

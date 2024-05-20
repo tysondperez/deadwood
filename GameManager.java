@@ -30,13 +30,13 @@ public class GameManager {
         }
         currentTurn = 1;
 
-        //need code to initialize locations array
-        //needs to read xml? somehow pull data about all locations
-        //and then store in locations[] using Location constructor
-
-        //temp code for location:
-        locations = new Location[1];
-        locations[0] = new Location("Trailer");
+        locations = new Location[12];
+        for (int i = 0; i < locations.length; i++){
+            locations[i] = new Location(i);
+        }
+        for (int i = 0; i < locations.length; i++){
+            locations[i].setNeighbors(i, locations);
+        }
         //also temp code for numScenes? idk how many
         scenesLeft = 20;
 

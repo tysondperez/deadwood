@@ -11,9 +11,34 @@ public class Location {
 	private int shotCounters;
 	Scene scene;
 
-	public Location(String n){
-		name = n;
+	public Location(int i){
+		name = Get_Info.location[i];
+		for (int j = 0; j < 4; j++){
+			roles[j] = new Off_Card(i, j);
+		}
+		if (name.equals("Casting Office") || name.equals("Trailers")){
+			shotCounters = -1;
+		} else {
+			shotCounters = Get_Info.markers[i];
+		}
+		if (name.equals("Casting Office")){
+			isCastingOffice = true;
+		} else {
+			isCastingOffice = false;
+		}
 		playersHere = new ArrayList<>();
+		scene = null;
+	}
+
+	public void setNeighbors(int x, Location[] locations){
+		for (int i = 0; i < 4; i++){
+			String nName = Get_Info.neighbor[x + i];
+			int j = 0;
+			while (!locations[j].getName().equals(nName)){
+				j++;
+			}
+			adjLocations[i] = locations[j];
+		}
 	}
 
 	public void awardBonuses(){
