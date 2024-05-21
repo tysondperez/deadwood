@@ -13,7 +13,7 @@ public class Player {
 	public Player(int pNum, int sC, int sR){
 		//set instance vars
 		playerNum = pNum;
-		rank = 6;
+		rank = sR;
 		//set role to null
 		curRole = null;
 		//set default loc to Trailer

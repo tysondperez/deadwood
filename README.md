@@ -8,6 +8,6 @@ The prompts don't outline the rules or the goal of the game, but using a copy of
 
 We designed it so that the game will only prompt you for the actions you are legally allowed to take, and therefore the user should not have to fear breaking the rules.
 
-The g ame will complete in the same conditions given by the rules, or execution can be stopped by any normal interrupt command. (It's not a prompt, but you can also quit by entering q at the beginning of any player's turn, or trigger the end of the game immediately by entering `).
+The game will complete in the same conditions given by the rules, or execution can be stopped by any normal interrupt command. (It's not a prompt, but you can also quit by entering q at the beginning of any player's turn, or trigger the end of the game immediately by entering `).
 
 I hope the code is up to par and you can enjoy!
