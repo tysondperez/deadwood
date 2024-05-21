@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @SuppressWarnings ("unused")
 public class Location {
@@ -68,8 +69,14 @@ public class Location {
 	}
 
 	public boolean checkWrap(){
+		if (scene == null){
+			return false;
+		}
 		if (curShotCounters == 0){
 			awardBonuses();
+			for (int i = 0; i < playersHere.size(); i++){
+				playersHere.get(i).stripRole();
+			}
 			scene = null;
 			return true;
 		}
@@ -77,25 +84,91 @@ public class Location {
 	}
 
 	public void awardBonuses(){
-		//check if there are more than one players and at least one player on the card
-		/*
-		 * if(playersHere > 1 && player.On_Card >= 1){
-		 * 
-		 * 		for (int i = 1; i <= budget; i++){
-		 *  		collect[c] = GameManager.rollDie();
-		 *  		c++;
-		 * 		}
-		 * 	
-		 * 		while (collect [i] != 0){
-		 * 
-		 * 			for (int i = 0; i < c, i++){
-		 * 				//assign die to current player
-		 * 				//if player = 0, restart the list
-		 * 			}
-		 * 		}
-		 *
-		*/
-		
+		System.out.println("Scene Wrapped! Awarding Bonuses...");
+		boolean trigger = false;
+		int numOn = 0;
+		for (int i = 0; i < playersHere.size(); i++){
+			if (playersHere.get(i).getRole() != null && playersHere.get(i).getRole().getName() != null){
+				if (playersHere.get(i).getRole().isOnCard()){
+					numOn ++;
+					trigger = true;
+				}
+			}
+		}
+		Player playersOnCard[] = new Player[numOn];
+		int q = 0;
+		for (int i = 0; i < numOn; i++){
+			while (q < playersHere.size() &&((playersHere.get(q).getRole() == null || playersHere.get(q).getRole().getName() == null) || !playersHere.get(q).getRole().isOnCard())){
+				q++;
+			}
+			if (q >= playersHere.size()){
+				System.out.println("On Card Role not found.");
+			} else {
+				playersOnCard[i] = playersHere.get(q);
+				q++;
+			}
+		}
+		if (trigger){
+			int dice[] = new int[scene.getBudget()];
+			for (int i = 0; i < scene.getBudget(); i++){
+				dice[i] = GameManager.rollDice();
+			}
+			Arrays.sort(dice);
+			System.out.println("The dice are: "+Arrays.toString(dice));
+			if (numOn == 2){
+				if (playersOnCard[0].getRole().getLevel() > playersOnCard[1].getRole().getLevel()){
+					Player temp = playersOnCard[0];
+					playersOnCard[0] = playersOnCard[1];
+					playersOnCard[1] = temp;
+				}
+			} else {
+				for (int i = 0; i < playersOnCard.length; i++){
+					int min = i;
+					for (int j = i + 1; j < playersOnCard.length; j++){
+						if (playersOnCard[j].getRole().getLevel() < playersOnCard[i].getRole().getLevel()){
+							min = j;
+						}
+					}
+					if (i != min){
+						Player temp = playersOnCard[i];
+						playersOnCard[i] = playersOnCard[min];
+						playersOnCard[min] = temp;
+					}
+				}
+			}
+			int nextDie = numOn - 1;
+			for (int i = dice.length - 1; i >= 0; i--){
+				System.out.println("The die with result "+dice[i]
+					+" will go to Player "+playersOnCard[nextDie].getpNum()
+					+", whose role had a level of "
+					+playersOnCard[nextDie].getRole().getLevel());
+				playersOnCard[nextDie].getBank().updateDol(dice[i]);
+				nextDie--;
+				if (nextDie < 0){
+					nextDie = numOn - 1;
+				}
+			}
+
+			//off card rewards
+			for (int i = 0; i < playersHere.size(); i++){
+				if (playersHere.get(i).getRole() != null && playersHere.get(i).getRole().getName() != null){
+					if (!playersHere.get(i).getRole().isOnCard()){
+						System.out.println("Player "+playersHere.get(i).getpNum()+" had an off card role of level "+playersHere.get(i).getRole().getLevel()+"!");
+						playersHere.get(i).getBank().updateDol(playersHere.get(i).getRole().getLevel());
+					}
+				}
+			}
+
+			//print updated bals
+			for (int i = 0; i < playersHere.size(); i++){
+				if (playersHere.get(i).getRole() != null && playersHere.get(i).getRole().getName() != null){
+					System.out.print("Player "+playersHere.get(i).getpNum()+" ");
+					playersHere.get(i).getBank().printBals();
+				}
+			}
+		} else {
+			System.out.println("No players on card, so no bonuses!");
+		}
 	}
 
 	public void addPlayer (Player p){

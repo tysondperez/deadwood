@@ -79,18 +79,37 @@ public class GameManager {
                 players[i].getLocation().removePlayer(players[i]);
                 players[i].setLocation(locations[10]);
                 locations[10].addPlayer(players[i]);
+                players[i].stripRole();
             }
         }     
     }
 
     public void endGame(){
-        //add up each players total
-            //compare the totals
-            //declare winner
-            //end game
+        int maxScore = 0;
+        int winP = 0;
+        for(int i = 0; i < numPlayers; i++){
+            Player p = players[i];
+            System.out.println("\nCalculating Score for Player "+(i+1)+"...");
+            int score = 0;
+            int cur = p.getBank().getDollars();
+            System.out.println("Points from dollars: "+cur);
+            score += cur;
+            cur = p.getBank().getCredits();
+            System.out.println("Points from credits: "+cur);
+            score += cur;
+            cur = p.getRank();
+            System.out.println("Points from rank: "+(5*cur));
+            score += (5*cur);
+            System.out.println("Final Score for Player "+(i+1)+": "+score+"\n");
+            if (score > maxScore){
+                maxScore = score;
+                winP = i;
+            }
+        }
+        System.out.println("\n\n\nCongrats, Player "+(winP + 1)+"! You win!");
     }
 
-    public static int rollDice(){ //change to static, maybe temp?
+    public static int rollDice(){
         int max = 6;
         int min = 1;
         int range = max - min + 1;
@@ -113,7 +132,7 @@ public class GameManager {
     public Player getPlayer(int pNum){
         return players[pNum - 1];
     }
-
+    
     public void printStatus(){
         System.out.println("Days Remaining: "+daysLeft+" (Game ends when there are 0 remaining)");
         System.out.println("Scenes Remaining: "+scenesLeft);

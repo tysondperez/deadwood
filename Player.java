@@ -13,7 +13,7 @@ public class Player {
 	public Player(int pNum, int sC, int sR){
 		//set instance vars
 		playerNum = pNum;
-		rank = sR;
+		rank = 6;
 		//set role to null
 		curRole = null;
 		//set default loc to Trailer
@@ -229,6 +229,10 @@ public class Player {
 		return curRole;
 	}
 
+	public int getpNum(){
+		return playerNum;
+	}
+
 	public Location getLocation(){
 		return curLocation;
 	}
@@ -251,6 +255,10 @@ public class Player {
 			}
 		}
 		return false;
+	}
+
+	public void stripRole() {
+		curRole = null;
 	}
 
 }

@@ -23,8 +23,11 @@ public class Deadwood{
             ArrayList<Character> options = game.printOptions();
             System.out.print("Please input your choice: ");
             char choice = input.next().charAt(0);
-            // --------------------------------------------------------------THIS IS IN HERE FOR TESTING TAKE OUT WHEN DONE----------------------
+            // -------------------------------------------THIS IS IN HERE FOR TESTING----------------------
             if (choice == 'q'){
+                break;
+            } else if (choice == '`'){
+                game.endGame();
                 break;
             }
             while (!options.contains(choice)){
