@@ -1,8 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 public class Deadwood{
     public static void main(String args[]){
+    	//create new model, view, and controller
+    	BoardModel model = new BoardModel();
+    	BoardView view = new BoardView();
+    	BoardController controller = new BoardController(model, view);
+    	view.registerListener(controller);
+    	
+    	
+    	//gameplay
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of players: ");
         int numP = input.nextInt();
@@ -110,5 +119,6 @@ public class Deadwood{
         }
         input.close();
     }
+    
 }
 
