@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+ import java.util.ArrayList;
 import java.util.Arrays;
 
 @SuppressWarnings ("unused")
@@ -75,7 +75,7 @@ public class Location {
 		if (curShotCounters == 0){
 			awardBonuses();
 			for (int i = 0; i < playersHere.size(); i++){
-				playersHere.get(i).stripRole();
+				playersHere.get(i).reset();
 			}
 			scene = null;
 			return true;

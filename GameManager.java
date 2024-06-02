@@ -79,7 +79,7 @@ public class GameManager {
                 players[i].getLocation().removePlayer(players[i]);
                 players[i].setLocation(locations[10]);
                 locations[10].addPlayer(players[i]);
-                players[i].stripRole();
+                players[i].reset();
             }
         }     
     }

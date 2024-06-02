@@ -53,7 +53,9 @@ public class Player {
 				curLocation.addPlayer(this);
 			}
 		}
-		curLocation.getScene().flip();
+		if (curLocation.getScene() != null){
+			curLocation.getScene().flip();
+		}
 		System.out.println("Moved to "+curLocation.getName()+"!");
 	}
 
@@ -135,7 +137,11 @@ public class Player {
 		System.out.print("Which rank would you like to upgrade to? ");
 		int targetRank = input.nextInt();
 		while (!canUpgrade(targetRank)){
-			System.out.println("Insufficient Funds! Please select another rank: ");
+			if (targetRank > 6){
+				System.out.println("Target Rank is too high! The maximum Rank is 6, select another rank: ");
+			} else {
+				System.out.println("Insufficient Funds! Please select another rank: ");
+			}
             targetRank = input.nextInt();
 		}
 		System.out.print("Would you like to pay with dollars (d) or credits (c)? ");
@@ -207,12 +213,18 @@ public class Player {
     }
 
 	public boolean canUpgrade(int targetRank){
+		if (targetRank > 6){
+			return false;
+		}
         int targetDollarPrice = (targetRank * targetRank) + targetRank - 2;
         int targetCreditPrice = 5 * (targetRank - 1);
         return (playerBank.getDollars() >= targetDollarPrice || playerBank.getCredits() >= targetCreditPrice);
     }
 
 	public boolean canUpgrade(int targetRank, char choice){
+		if (targetRank > 6){
+			return false;
+		}
 		if (choice == 'c'){
 			int targetCreditPrice = 5 * (targetRank - 1);
 			return (playerBank.getCredits() >= targetCreditPrice);
@@ -256,9 +268,4 @@ public class Player {
 		}
 		return false;
 	}
-
-	public void stripRole() {
-		curRole = null;
-	}
-
 }
