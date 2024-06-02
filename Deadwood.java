@@ -2,14 +2,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
+
 public class Deadwood{
     public static void main(String args[]){
     	//create new model, view, and controller
     	BoardModel model = new BoardModel();
     	BoardView view = new BoardView();
     	BoardController controller = new BoardController(model, view);
+    	
     	view.registerListener(controller);
     	
+    	
+    	view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	view.setSize(400, 300);
+    	view.setVisible(true);
     	
     	//gameplay
         Scanner input = new Scanner(System.in);
