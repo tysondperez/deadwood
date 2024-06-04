@@ -121,6 +121,10 @@ public class GameManager {
         return daysLeft;
     }
 
+    public int getScenesLeft(){
+        return scenesLeft;
+    }
+
     public int getCurrentTurn(){
         return currentTurn;
     }

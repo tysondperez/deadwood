@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class Deadwood{
@@ -12,6 +13,21 @@ public class Deadwood{
             view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             view.setSize(1400, 1010);
             view.setVisible(true);
+            int numP = Integer.parseInt(JOptionPane.showInputDialog(view, "How many players?"));
+            while (numP < 2 || numP > 8){
+                if (numP < 2){
+                    numP = Integer.parseInt(JOptionPane.showInputDialog(view,
+                    "Sorry, you need at least 2 players!\nEnter the number of players: "));
+                }
+                else {
+                    numP = Integer.parseInt(JOptionPane.showInputDialog(view,
+                    "Sorry, this game only goes up to 8 players!\nEnter the number of players: "));
+                }
+            }
+            GameManager game = new GameManager(numP);
+            int creds = game.getPlayer().getBank().getCredits();
+            int dols = game.getPlayer().getBank().getDollars();
+            view.displayStatus(game.getDaysLeft(), game.getScenesLeft(), game.getCurrentTurn(), creds, dols);
         } 
         
         
