@@ -24,28 +24,10 @@ public class Player {
 		timesRehearsed = 0;
 	}
 
-	public void move(Scanner input){
+	public void move(String choice){
 		int numOptions = curLocation.printAdj();
-		boolean choiceListed = false;
-		String[] options = new String[numOptions];
 		System.out.print("Which space would you like to move to? ");
-		input.nextLine();
-		String choice = input.nextLine();
 		Location adj[] = curLocation.getAdj();
-		for (int i = 0; i < numOptions; i++){
-			if (adj[i].getName().equals(choice)){
-				choiceListed = true;
-			}
-		}
-		while (!choiceListed){
-			System.out.println("Invalid Input! Please try again: ");
-			choice = input.nextLine();
-			for (int i = 0; i < numOptions; i++){
-				if (adj[i].getName().equals(choice)){
-					choiceListed = true;
-				}
-			}
-		}
 		for (int i = 0; i < numOptions; i++){
 			if (adj[i].getName().equals(choice)){
 				curLocation.removePlayer(this);
@@ -187,8 +169,7 @@ public class Player {
 		int budget = curLocation.getScene().getBudget();
 		System.out.println("Rolling dice...\n");
 		System.out.println("You rolled a "+diceRoll+"!");
-		boolean success = (diceRoll + timesRehearsed) 
-			>= budget;
+		boolean success = (diceRoll + timesRehearsed) >= budget;
 		if (success){
 			System.out.println("Your roll, "+diceRoll+
 				" + your rehearsal chips ("+timesRehearsed+
@@ -200,6 +181,10 @@ public class Player {
 					") was lower than the budget ("+budget+").");
 		}
 		curRole.getRewards(success, this);
+	}
+
+	public boolean canRehearse(){
+		return (curRole != null) && ((timesRehearsed + 1) >= curLocation.getScene().getBudget());
 	}
 
 	public boolean canUpgrade(){

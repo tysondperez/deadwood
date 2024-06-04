@@ -6,152 +6,29 @@ import javax.swing.JOptionPane;
 
 public class Deadwood{
     public static void main(String args[]){
-        if (args.length < 1){
-            //create new model, view, and controller
-            BoardView view = new BoardView();
-            
-            view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            view.setSize(1400, 1010);
-            view.setVisible(true);
-            int numP = Integer.parseInt(JOptionPane.showInputDialog(view, "How many players?"));
-            while (numP < 2 || numP > 8){
-                if (numP < 2){
-                    numP = Integer.parseInt(JOptionPane.showInputDialog(view,
-                    "Sorry, you need at least 2 players!\nEnter the number of players: "));
-                }
-                else {
-                    numP = Integer.parseInt(JOptionPane.showInputDialog(view,
-                    "Sorry, this game only goes up to 8 players!\nEnter the number of players: "));
-                }
-            }
-            GameManager game = new GameManager(numP);
-            int creds = game.getPlayer().getBank().getCredits();
-            int dols = game.getPlayer().getBank().getDollars();
-            view.displayStatus(game.getDaysLeft(), game.getScenesLeft(), game.getCurrentTurn(), creds, dols);
-        } 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        //create new view
+        BoardView view = new BoardView();
+        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.setSize(1400, 1010);
+        view.setVisible(true);
 
 
-
-
-
-        else {     
-        // old text version below, playable by running "java Deadwood old"        
-        System.out.println("text version");
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the number of players: ");
-        int numP = input.nextInt();
+        int numP = Integer.parseInt(JOptionPane.showInputDialog(view, "How many players?"));
         while (numP < 2 || numP > 8){
             if (numP < 2){
-                System.out.print("Sorry, you need at least 2 players!\nEnter the number of players: ");
+                numP = Integer.parseInt(JOptionPane.showInputDialog(view,
+                "Sorry, you need at least 2 players!\nEnter the number of players: "));
             }
             else {
-                System.out.print("Sorry, this game only goes up to 8 players!\nEnter the number of players: ");
+                numP = Integer.parseInt(JOptionPane.showInputDialog(view,
+                "Sorry, this game only goes up to 8 players!\nEnter the number of players: "));
             }
-            numP = input.nextInt();
         }
         GameManager game = new GameManager(numP);
-
-        //core gameplay loop
-        while(game.getDaysLeft() > 0){
-            game.printStatus();
-            ArrayList<Character> options = game.printOptions();
-            System.out.print("Please input your choice: ");
-            char choice = input.next().charAt(0);
-            // -------------------------------------------THIS IS IN HERE FOR TESTING----------------------
-            if (choice == 'q'){
-                break;
-            } else if (choice == '`'){
-                game.endGame();
-                break;
-            }
-            while (!options.contains(choice)){
-                System.out.println("Invalid Input! Please try again: ");
-                choice = input.next().charAt(0);
-            }
-            Player curPlayer = game.getPlayer();
-            if (choice == 'e'){
-                System.out.println("Chose to end turn");
-            } else if (choice == 'a'){
-                System.out.println("Chose to act");
-                curPlayer.act();
-            } else if (choice == 'r'){
-                System.out.println("Chose to rehearse");
-                curPlayer.rehearse();
-            } else if (choice == 'm'){
-                System.out.println("Chose to move");
-                curPlayer.move(input);
-                if ((curPlayer.getLocation().getName().equals("Casting Office"))){
-                    if (!curPlayer.canUpgrade()){
-                        System.out.println("You're on the Casting Office, but you can't upgrade right now!");
-                    } else {
-                        System.out.print("Would you also like to upgrade? (y/n): ");
-                        choice = input.next().charAt(0);
-                        while ((choice != 'y') && (choice != 'n')){
-                            System.out.println("Invalid Input! Please try again: ");
-                            choice = input.next().charAt(0);
-                        }
-                        if (choice == 'y'){
-                            curPlayer.upgrade(input);
-                        }
-                    }
-                }
-                else if (!curPlayer.getLocation().getName().equals("Trailers")){
-                    if (!curPlayer.getLocation().hasRolesAvail() || !curPlayer.canTakeRole()){
-                        System.out.println("This location has no available roles for you!");
-                    } else {
-                        System.out.print("Would you also like to take a role? (y/n): ");
-                        choice = input.next().charAt(0);
-                        while ((choice != 'y') && (choice != 'n')){
-                            System.out.println("Invalid Input! Please try again: ");
-                            choice = input.next().charAt(0);
-                        }
-                        if (choice == 'y'){
-                            curPlayer.takeRole(input);
-                        }
-                    }
-                }
-            } else if (choice == 't'){
-                System.out.println("Chose to take role");
-                curPlayer.takeRole(input);
-            } else if (choice == 'u'){
-                System.out.println("Chose to upgrade");
-                curPlayer.upgrade(input);
-                System.out.print("Would you also like to move? (y/n): ");
-                choice = input.next().charAt(0);
-                while ((choice != 'y') && (choice != 'n')){
-                    System.out.println("Invalid Input! Please try again: ");
-                    choice = input.nextLine().charAt(0);
-                }
-                if (choice == 'y'){
-                    curPlayer.move(input);
-                    System.out.println(curPlayer.getLocation().hasRolesAvail());
-                    if (!curPlayer.getLocation().hasRolesAvail() || !curPlayer.canTakeRole()){
-                        System.out.println("This location has no available roles for you!");
-                    } else {
-                        System.out.print("Would you also like to take a role? (y/n): ");
-                        choice = input.next().charAt(0);
-                        while ((choice != 'y') && (choice != 'n')){
-                            System.out.println("Invalid Input! Please try again: ");
-                            choice = input.next().charAt(0);
-                        }
-                        if (choice == 'y'){
-                            curPlayer.takeRole(input);
-                        }
-                    }
-                }
-            }
-            game.endTurn();
-        }
-        input.close();
-        }
+        BoardController controller = new BoardController(game, view);
+        game.setController(controller);
+        view.setController(controller);
+        controller.updateView();
+        controller.startTurn();
     }  
 }

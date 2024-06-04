@@ -9,6 +9,7 @@ public class GameManager {
     public static Location[] locations;
     private int scenesLeft;
     private int daysLeft;
+    private BoardController controller;
 
     public GameManager(int numP){
         //set up basic rules, based on numPlayers
@@ -61,6 +62,8 @@ public class GameManager {
         }
         if (scenesLeft <= 1){
             endDay();
+        } else {
+            controller.startTurn();
         }
     }
 
@@ -135,6 +138,10 @@ public class GameManager {
     }
     public Player getPlayer(int pNum){
         return players[pNum - 1];
+    }
+
+    public void setController(BoardController controller){
+        this.controller = controller;
     }
     
     public void printStatus(){

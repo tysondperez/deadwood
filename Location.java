@@ -187,6 +187,16 @@ public class Location {
 		return adjLocations;
 	}
 
+	public String[] getAdjNames(){
+		String[] names = new String[adjLocations.length];
+		for (int i = 0; i < adjLocations.length; i++){
+			if (adjLocations[i] != null){
+				names[i] = adjLocations[i].getName();
+			}
+		}
+		return names;
+	}
+
 	public int getShots(){
 		return curShotCounters;
 	}
@@ -256,14 +266,15 @@ public class Location {
 	}
 
 	public int printAdj(){
+		System.out.println("printing adjLocs...");
 		int ret = 0;
-		System.out.println("The Locations adjacent to "+name+" are: ");
+		//System.out.println("The Locations adjacent to "+name+" are: ");
 		for (int i = 0; i < adjLocations.length; i++){
 			if (adjLocations[i] != null){
-				System.out.println(adjLocations[i].getName());
+				//System.out.println(adjLocations[i].getName());
 				int sR = adjLocations[i].getShots();
 				if (sR > 0){
-					adjLocations[i].getScene().printSceneInfo();
+					//adjLocations[i].getScene().printSceneInfo();
 				}
 				ret ++;
 			}
