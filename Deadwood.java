@@ -5,19 +5,31 @@ import javax.swing.JFrame;
 
 public class Deadwood{
     public static void main(String args[]){
-    	//create new model, view, and controller
-    	BoardModel model = new BoardModel();
-    	BoardView view = new BoardView();
-    	BoardController controller = new BoardController(model, view);
-    	
-    	view.registerListener(controller);
-    	
-    	
-    	view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	view.setSize(400, 300);
-    	view.setVisible(true);
-    	
-    	//gameplay
+        if (args.length < 1){
+            //create new model, view, and controller
+            BoardView view = new BoardView();
+            
+            view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            view.setSize(1400, 1010);
+            view.setVisible(true);
+        } 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+        else {     
+        // old text version below, playable by running "java Deadwood old"        
+        System.out.println("text version");
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of players: ");
         int numP = input.nextInt();
@@ -124,7 +136,6 @@ public class Deadwood{
             game.endTurn();
         }
         input.close();
-    }
-    
+        }
+    }  
 }
-
