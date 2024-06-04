@@ -12,12 +12,15 @@ import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.event.*;
 import java.util.ArrayList;
+
+@SuppressWarnings("removal")
+
 public class BoardView extends JFrame {
 
    // JLabels
    JLabel boardlabel;
    JLabel cardlabel;
-   JLabel playerlabel;
+   JLabel playerlabels[];
    JLabel mLabel;
    JLabel daysLeftLabel;
    JLabel scenesLeftLabel;
@@ -44,7 +47,6 @@ public class BoardView extends JFrame {
    public BoardController controller;
 
    // Constructor
-   @SuppressWarnings("removal")
    public BoardView() {
       // Set the title of the JFrame
       super("Deadwood");
@@ -76,15 +78,6 @@ public class BoardView extends JFrame {
       // Add the card to the lower layer
       bPane.add(cardlabel, new Integer(1));
       
-      // Add a dice to represent a player. 
-      // Role for Crusty the prospector. The x and y co-ordiantes are taken from Board.xml file
-      playerlabel = new JLabel();
-      ImageIcon pIcon = new ImageIcon("images/dice/r2.png");
-      playerlabel.setIcon(pIcon);
-      //playerlabel.setBounds(114,227,pIcon.getIconWidth(),pIcon.getIconHeight());  
-      playerlabel.setBounds(114,227,46,46);
-      playerlabel.setVisible(false);
-      bPane.add(playerlabel,new Integer(3));
    
       // Create the Menu for action buttons
       mLabel = new JLabel("MENU");
@@ -136,6 +129,7 @@ public class BoardView extends JFrame {
       white = new JButton("WHITEEEEEEEE");
       white.setBackground(Color.white);
       white.setBounds(991,248,201, 194);
+      white.setVisible(false);
       bPane.add(white, new Integer(2));
 
 
@@ -188,6 +182,46 @@ public class BoardView extends JFrame {
 		dollarsLabel.setText("Dollars: "+dol);
   	}
 
+   public void createPlayers(int n, String [] colors){
+      playerlabels = new JLabel[n];
+      for (int i = 0; i < n; i++){
+         playerlabels[i] = new JLabel();
+         ImageIcon pIcon = new ImageIcon("images/dice/"+colors[i]+"1.png");
+         playerlabels[i].setIcon(pIcon);
+         playerlabels[i].setBounds((991 + (i%4)*pIcon.getIconWidth()),(248 + (i/4)*pIcon.getIconHeight()),pIcon.getIconWidth(),pIcon.getIconHeight());  
+         playerlabels[i].setVisible(true);
+         bPane.add(playerlabels[i],new Integer(3));
+      }
+   }
+
+   // public void movePlayer(int n, int locX, int locY, int x, int y){
+   //    if (n == 1){
+	// 		return "r";
+	// 	}
+	// 	if (n == 2){
+	// 		return "b";
+	// 	}
+	// 	if (n == 3){
+	// 		return "g";
+	// 	}
+	// 	if (n == 4){
+	// 		return "y";
+	// 	}
+	// 	if (n == 5){
+	// 		return "o";
+	// 	}
+	// 	if (n == 6){
+	// 		return "v";
+	// 	}
+	// 	if (n == 7){
+	// 		return "c";
+	// 	}
+	// 	if (n == 8){
+	// 		return "p";
+	// 	}
+	// 	return "";
+   // }
+
    public void startTurn(ArrayList<Character> options){
       bAct.setVisible(options.contains('a'));
       bRehearse.setVisible(options.contains('r'));
@@ -228,7 +262,6 @@ public class BoardView extends JFrame {
       // Code for the different button clicks
       public void mouseClicked(MouseEvent e) {
          if (e.getSource()== bAct){
-            playerlabel.setVisible(true);
             System.out.println("Acting is Selected\n");
             controller.handleAct();
          }

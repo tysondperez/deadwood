@@ -9,10 +9,12 @@ public class Player {
     private Location curLocation;
     private Bank playerBank;
 	private int timesRehearsed;
+	private String color;
 
 	public Player(int pNum, int sC, int sR){
 		//set instance vars
 		playerNum = pNum;
+		color = GameManager.colors[pNum - 1];
 		rank = sR;
 		//set role to null
 		curRole = null;

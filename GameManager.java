@@ -10,6 +10,8 @@ public class GameManager {
     private int scenesLeft;
     private int daysLeft;
     private BoardController controller;
+    public static final String colors[] = new String[] 
+        {"r", "b", "y", "g", "o", "v", "c", "p"};
 
     public GameManager(int numP){
         //set up basic rules, based on numPlayers

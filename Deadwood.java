@@ -28,6 +28,7 @@ public class Deadwood{
         BoardController controller = new BoardController(game, view);
         game.setController(controller);
         view.setController(controller);
+        view.createPlayers(numP, GameManager.colors);
         controller.updateView();
         controller.startTurn();
     }  
