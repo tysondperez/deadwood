@@ -11,6 +11,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 
 @SuppressWarnings("removal")
@@ -51,6 +52,8 @@ public class BoardView extends JFrame {
    
    public BoardController controller;
 
+   String imagePath;
+
    // Constructor
    public BoardView() {
       // Set the title of the JFrame
@@ -58,12 +61,19 @@ public class BoardView extends JFrame {
       // Set the exit option for the JFrame
       setDefaultCloseOperation(EXIT_ON_CLOSE);
    
+      File srcDir = new File("src");
+      if (srcDir.exists() && srcDir.isDirectory()){
+         imagePath = "src/images/";
+      } else {
+         imagePath = "images/";
+      }
+
       // Create the JLayeredPane to hold the display, cards, dice and buttons
       bPane = getLayeredPane();
    
       // Create the deadwood board
       boardlabel = new JLabel();
-      ImageIcon icon =  new ImageIcon("src/images/board.jpg");
+      ImageIcon icon =  new ImageIcon(imagePath+"board.jpg");
       boardlabel.setIcon(icon); 
       boardlabel.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
    
@@ -366,7 +376,7 @@ public class BoardView extends JFrame {
       //--------------------------------------- End room creation --------------------------
       // Add a scene card to this room
       cardlabel = new JLabel();
-      ImageIcon cIcon =  new ImageIcon("src/images/cards/01.png");
+      ImageIcon cIcon =  new ImageIcon(imagePath+"/cards/01.png");
       cardlabel.setIcon(cIcon); 
       cardlabel.setBounds(20,65,cIcon.getIconWidth()+2,cIcon.getIconHeight());
       cardlabel.setOpaque(true);
@@ -482,7 +492,7 @@ public class BoardView extends JFrame {
       playerlabels = new JLabel[n];
       for (int i = 0; i < n; i++){
          playerlabels[i] = new JLabel();
-         ImageIcon pIcon = new ImageIcon("src/images/dice/"+colors[i]+"1.png");
+         ImageIcon pIcon = new ImageIcon(imagePath+"dice/"+colors[i]+"1.png");
          playerlabels[i].setIcon(pIcon);
          playerlabels[i].setBounds((991 + (i%4)*pIcon.getIconWidth()),(248 + (i/4)*pIcon.getIconHeight()),pIcon.getIconWidth(),pIcon.getIconHeight());  
          playerlabels[i].setVisible(true);
