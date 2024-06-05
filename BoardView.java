@@ -28,6 +28,10 @@ public class BoardView extends JFrame {
    JLabel creditsLabel;
    JLabel dollarsLabel;
    JLabel invalidLabel;
+   JLabel roomlabel;
+   JLabel takeslabel;
+   JLabel partslabel;
+   JLabel ranklabel;
    
    //JButtons
    JButton bAct;
@@ -58,7 +62,7 @@ public class BoardView extends JFrame {
    
       // Create the deadwood board
       boardlabel = new JLabel();
-      ImageIcon icon =  new ImageIcon("images/board.jpg");
+      ImageIcon icon =  new ImageIcon("src/images/board.jpg");
       boardlabel.setIcon(icon); 
       boardlabel.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight());
    
@@ -67,7 +71,288 @@ public class BoardView extends JFrame {
    
       // Set the size of the GUI
       setSize(icon.getIconWidth()+200,icon.getIconHeight());
+      //------------------------------------------------------------Create locations on board-----------------  
+      //Set Train Station with assets
+      roomlabel = new JLabel("Train Station");
+      roomlabel.setBounds(21, 69, 205, 115);
+      bPane.add(roomlabel, new Integer(1)); //lower layer?
       
+      takeslabel = new JLabel("3");
+      takeslabel.setBounds(36, 11, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(89, 11, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(141, 11, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Crusty Prospector");
+      partslabel.setBounds(114, 227, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Dragged by Train");
+      partslabel.setBounds(51, 268, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Preacher with Bag");
+      partslabel.setBounds(114, 320, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Cyrus the Gunfighter");
+      partslabel.setBounds(49, 356, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Set Secret Hideout with assets
+      roomlabel = new JLabel("Secret Hideout");
+      roomlabel.setBounds(27, 732, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("3");
+      takeslabel.setBounds(244, 764, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(299, 764, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(354, 764, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Clumsy Pit Fighter");
+      partslabel.setBounds(435, 719, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Thug with Knife");
+      partslabel.setBounds(521, 719, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Dangerous Tom");
+      partslabel.setBounds(435, 808, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Penny, who is lost");
+      partslabel.setBounds(521, 808, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Church with assets
+      roomlabel = new JLabel("Church");
+      roomlabel.setBounds(623, 734, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(623, 675, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(682, 675, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Dead Man");
+      partslabel.setBounds(857, 730, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Crying Woman");
+      partslabel.setBounds(858, 809, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Hotel with assets
+      roomlabel = new JLabel("Hotel");
+      roomlabel.setBounds(969, 740, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("3");
+      takeslabel.setBounds(1005, 683, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(1058, 683, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(1111, 683, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Sleeping Drunkard");
+      partslabel.setBounds(1111, 469, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Faro Player");
+      partslabel.setBounds(1044, 509, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Falls from Balcony");
+      partslabel.setBounds(1111, 557, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Australian Bartender");
+      partslabel.setBounds(1046, 596, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Main Street with assets
+      roomlabel = new JLabel("Main Street");
+      roomlabel.setBounds(969, 28, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("3");
+      takeslabel.setBounds(912, 23, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(858, 23, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(804, 23, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Railroad Worker");
+      partslabel.setBounds(637, 22, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Falls off Roof");
+      partslabel.setBounds(720, 22, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Woman in Black Dress");
+      partslabel.setBounds(637, 105, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Mayor McGinty");
+      partslabel.setBounds(720, 105, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Jail with assets
+      roomlabel = new JLabel("Jail");
+      roomlabel.setBounds(281, 27, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(442, 156, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Prisoner In Cell");
+      partslabel.setBounds(519, 25, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Feller in Irons");
+      partslabel.setBounds(519, 105, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create General Store with assets
+      roomlabel = new JLabel("General Store");
+      roomlabel.setBounds(370, 282, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(313, 277, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(313, 330, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Man in Overalls");
+      partslabel.setBounds(236, 276, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Mister Keach");
+      partslabel.setBounds(236, 358, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Ranch with assets
+      roomlabel = new JLabel("Ranch");
+      roomlabel.setBounds(252, 478, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(472, 473, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(525, 473, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Shot in Leg");
+      partslabel.setBounds(412, 608, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Saucy Fred");
+      partslabel.setBounds(488, 608, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Man Under Horse");
+      partslabel.setBounds(488, 525, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Bank with assets
+      roomlabel = new JLabel("Bank");
+      roomlabel.setBounds(623, 475, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(840, 549, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Suspicious Gentleman");
+      partslabel.setBounds(911, 554, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Flustered Teller");
+      partslabel.setBounds(911, 470, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create Saloon with assets
+      roomlabel = new JLabel("Jail");
+      roomlabel.setBounds(281, 27, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(442, 156, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Prisoner In Cell");
+      partslabel.setBounds(519, 25, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Feller in Irons");
+      partslabel.setBounds(519, 105, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //Create General Store with assets
+      roomlabel = new JLabel("Saloon");
+      roomlabel.setBounds(632, 280, 205, 115);
+      bPane.add(roomlabel, new Integer(1));
+      
+      takeslabel = new JLabel("2");
+      takeslabel.setBounds(626, 216, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      takeslabel = new JLabel("1");
+      takeslabel.setBounds(679, 216, 47, 47);
+      bPane.add(takeslabel, new Integer(1));
+      
+      partslabel = new JLabel("Reluctant Farmer");
+      partslabel.setBounds(877, 352, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      partslabel = new JLabel("Woman in Red Dress");
+      partslabel.setBounds(877, 276, 46, 46);
+      bPane.add(partslabel, new Integer(1));
+      
+      //create trailer and office and ranks
+      roomlabel = new JLabel("Trailer");
+      roomlabel.setBounds(991, 248, 201, 194);
+      bPane.add(roomlabel, new Integer(1));
+      roomlabel = new JLabel("Office");
+      roomlabel.setBounds(9, 459, 209, 208);
+      bPane.add(roomlabel, new Integer(1));
+      
+      ranklabel = new JLabel("2");
+      ranklabel.setBounds(98, 542, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("3");
+      ranklabel.setBounds(98, 564, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("4");
+      ranklabel.setBounds(98, 587, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("5");
+      ranklabel.setBounds(98, 609, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("6");
+      ranklabel.setBounds(98, 631, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      
+      ranklabel = new JLabel("2");
+      ranklabel.setBounds(147, 542, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("3");
+      ranklabel.setBounds(147, 564, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("4");
+      ranklabel.setBounds(147, 587, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("5");
+      ranklabel.setBounds(147, 609, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+      ranklabel = new JLabel("6");
+      ranklabel.setBounds(147, 631, 19, 19);
+      bPane.add(ranklabel, new Integer(1));
+    		  
+      
+      //--------------------------------------- End room creation --------------------------
       // Add a scene card to this room
       cardlabel = new JLabel();
       ImageIcon cIcon =  new ImageIcon("images/cards/01.png");
