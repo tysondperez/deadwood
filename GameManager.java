@@ -126,6 +126,10 @@ public class GameManager {
         return daysLeft;
     }
 
+    public int getNumPlayers(){
+        return numPlayers;
+    }
+
     public int getScenesLeft(){
         return scenesLeft;
     }

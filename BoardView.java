@@ -22,10 +22,12 @@ public class BoardView extends JFrame {
    JLabel boardlabel;
    JLabel cardlabel;
    JLabel playerlabels[];
+   ImageIcon pIcons[];
    JLabel mLabel;
    JLabel daysLeftLabel;
    JLabel scenesLeftLabel;
    JLabel activePlayerLabel;
+   JLabel playerColorLabel;
    JLabel creditsLabel;
    JLabel dollarsLabel;
    JLabel invalidLabel;
@@ -371,8 +373,21 @@ public class BoardView extends JFrame {
       ranklabelC[4] = new JLabel("6");
       ranklabelC[4].setBounds(147, 631, 19, 19);
       bPane.add(ranklabelC[4], new Integer(1));
-    		  
-      
+    	
+      for (int i = 0; i < roomlabel.length; i++){
+         roomlabel[i].setVisible(false);
+      }
+      for (int i = 0; i < takeslabel.length; i++){
+         if (takeslabel[i] != null){
+            takeslabel[i].setVisible(false);
+         }
+      }
+      for (int i = 0; i < partslabel.length; i++){
+         if (partslabel[i] != null){
+            partslabel[i].setVisible(false);
+         }
+      }
+
       //--------------------------------------- End room creation --------------------------
       // Add a scene card to this room
       cardlabel = new JLabel();
@@ -434,7 +449,7 @@ public class BoardView extends JFrame {
 
       white = new JButton("WHITEEEEEEEE");
       white.setBackground(Color.white);
-      white.setBounds(991,248,201, 194);
+      white.setBounds(969, 28, 205, 115);
       white.setVisible(false);
       bPane.add(white, new Integer(2));
 
@@ -471,6 +486,10 @@ public class BoardView extends JFrame {
       activePlayerLabel.setBounds(icon.getIconWidth()+10, 330,110, 10);
       bPane.add(activePlayerLabel,new Integer(2));
 
+      playerColorLabel = new JLabel();
+      playerColorLabel.setBounds(icon.getIconWidth()+45, 375,50, 50);
+      bPane.add(playerColorLabel,new Integer(2));
+
       creditsLabel = new JLabel();
       creditsLabel.setBounds(icon.getIconWidth()+10, 345,110, 10);
       bPane.add(creditsLabel,new Integer(2));
@@ -486,13 +505,18 @@ public class BoardView extends JFrame {
 		activePlayerLabel.setText("Player "+p+"\'s Turn");
 		creditsLabel.setText("Credits: "+c);
 		dollarsLabel.setText("Dollars: "+dol);
+      playerColorLabel.setIcon(pIcons[p - 1]);
+      //playerColorLabel.setText("Here");
+      playerColorLabel.setVisible(true);
   	}
 
    public void createPlayers(int n, String [] colors){
       playerlabels = new JLabel[n];
+      pIcons = new ImageIcon[n];
       for (int i = 0; i < n; i++){
          playerlabels[i] = new JLabel();
          ImageIcon pIcon = new ImageIcon(imagePath+"dice/"+colors[i]+"1.png");
+         pIcons[i] = pIcon;
          playerlabels[i].setIcon(pIcon);
          playerlabels[i].setBounds((991 + (i%4)*pIcon.getIconWidth()),(248 + (i/4)*pIcon.getIconHeight()),pIcon.getIconWidth(),pIcon.getIconHeight());  
          playerlabels[i].setVisible(true);
@@ -500,33 +524,30 @@ public class BoardView extends JFrame {
       }
    }
 
-   // public void movePlayer(int n, int locX, int locY, int x, int y){
-   //    if (n == 1){
-	// 		return "r";
-	// 	}
-	// 	if (n == 2){
-	// 		return "b";
-	// 	}
-	// 	if (n == 3){
-	// 		return "g";
-	// 	}
-	// 	if (n == 4){
-	// 		return "y";
-	// 	}
-	// 	if (n == 5){
-	// 		return "o";
-	// 	}
-	// 	if (n == 6){
-	// 		return "v";
-	// 	}
-	// 	if (n == 7){
-	// 		return "c";
-	// 	}
-	// 	if (n == 8){
-	// 		return "p";
-	// 	}
-	// 	return "";
-   // }
+   public void movePlayer(int n, int roomInd, int partInd, int playersThere){
+      //top left: trailers 10, casting 11
+      //bot left: saloon 9, bank 8, church 2, hideout 1, jail 5, hotel 3, ranch 7, train 0
+      //bot right: main 4, general store 6
+      if (partInd == -1){
+         JLabel temp = roomlabel[roomInd];
+         int curx = (int) temp.getLocation().getX();
+         int cury = (int) temp.getLocation().getY();
+         int newx = 0;
+         int newy = 0;
+         if (roomInd >= 10){
+            newx = (curx + (playersThere * playerlabels[n].getIcon().getIconWidth()));
+            newy = cury;
+         } else if (roomInd == 4 || roomInd == 6){
+            newx = curx + temp.getWidth() - 
+               ((playersThere + 1) * playerlabels[n].getIcon().getIconWidth());
+            newy = (cury + temp.getHeight());
+         } else {
+            newx = curx + (playersThere * playerlabels[n].getIcon().getIconWidth());
+            newy = (cury + temp.getHeight());
+         }
+         playerlabels[n].setLocation(newx, newy);
+      }
+   }
 
    public void startTurn(ArrayList<Character> options){
       bAct.setVisible(options.contains('a'));

@@ -26,7 +26,7 @@ public class Player {
 		timesRehearsed = 0;
 	}
 
-	public void move(String choice){
+	public int move(String choice){
 		int numOptions = curLocation.printAdj();
 		System.out.print("Which space would you like to move to? ");
 		Location adj[] = curLocation.getAdj();
@@ -41,6 +41,7 @@ public class Player {
 			curLocation.getScene().flip();
 		}
 		System.out.println("Moved to "+curLocation.getName()+"!");
+		return curLocation.getRoomInd();
 	}
 
 	public void takeRole(Scanner input){

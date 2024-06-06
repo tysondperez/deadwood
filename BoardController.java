@@ -11,6 +11,10 @@ public class BoardController {
 		this.view = view;
 	}
 	
+	public void handleEndTurn() {
+		
+	}
+
 	public void handleAct() {
 		if (game.getPlayer().getRole() != null){
 			game.getPlayer().act();
@@ -27,7 +31,20 @@ public class BoardController {
 
 	public void handleMovePicked(String choice) {
 		view.showAdjLoc(false);
-		game.getPlayer().move(choice);
+		int movedR = game.getPlayer().move(choice);
+		int x = 0;
+		for (int i = 0; i < game.getNumPlayers(); i++){
+			int r = game.getPlayer(i + 1).getLocation().getRoomInd();
+			if (r == movedR && game.getPlayer(i + 1).getRole() == null){
+				System.out.println("moving a dude! player: "+(i + 1));
+				view.movePlayer(i, r, -1, x);
+				x++;
+			} else {
+				System.out.println("skipped over");
+				System.out.println("r: "+r+", movedR: "+movedR);
+			}
+		}
+		//maybe code for ask if want role here
 		game.endTurn();
 	}
 
@@ -38,6 +55,7 @@ public class BoardController {
 	}
 
 	public void startTurn(){
+		updateView();
 		view.startTurn(game.printOptions());
 	}
 

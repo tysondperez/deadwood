@@ -11,10 +11,13 @@ public class Location {
 	boolean isCastingOffice;
 	private int maxShotCounters;
 	private int curShotCounters;
+	private int roomInd;
 	Scene scene;
 
 	public Location(int i){
 		name = Get_Info.location[i];
+
+		roomInd = i;
 
 		adjLocations = new Location[4];
 
@@ -197,6 +200,10 @@ public class Location {
 		return names;
 	}
 
+	public ArrayList<Player> getPlayersHere(){
+		return playersHere;
+	}
+
 	public int getShots(){
 		return curShotCounters;
 	}
@@ -219,6 +226,10 @@ public class Location {
 
 	public Scene getScene(){
 		return scene;
+	}
+
+	public int getRoomInd(){
+		return roomInd;
 	}
 
 	public Role[] getRolesAvail(){
