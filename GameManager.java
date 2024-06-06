@@ -77,6 +77,7 @@ public class GameManager {
         } else {
             scenesLeft = 10;
             Deck.dealCards();
+            controller.showCardBacks();
             for (int i = 0; i < locations.length; i++){
                 locations[i].setMaxShots();
             }

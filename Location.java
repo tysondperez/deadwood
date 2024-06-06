@@ -232,12 +232,12 @@ public class Location {
 		return roomInd;
 	}
 
-	public Role[] getRolesAvail(){
+	public Role[] getRolesAvail(int rank){
 		Role[] ret = new Role[roles.length];
 		int j = 0;
 		for (int i = 0; i < roles.length; i++){
 			if (roles[i] != null && roles[i].getName() != null){
-				if (!roles[i].isTaken()){
+				if (!roles[i].isTaken() && roles[i].getLevel() <= rank){
 					ret[j] = roles[i];
 					j++;
 				}
@@ -277,7 +277,6 @@ public class Location {
 	}
 
 	public int printAdj(){
-		System.out.println("printing adjLocs...");
 		int ret = 0;
 		//System.out.println("The Locations adjacent to "+name+" are: ");
 		for (int i = 0; i < adjLocations.length; i++){

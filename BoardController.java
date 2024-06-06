@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class BoardController {
 	
@@ -12,7 +11,33 @@ public class BoardController {
 	}
 	
 	public void handleEndTurn() {
+		game.endTurn();
+	}
+	public void handleUpgrade() {
 		
+	}
+	public void handleTake() {
+		if (game.getPlayer().getRole() == null){
+			Role roles[] = game.getPlayer().getLocation().getRolesAvail(game.getPlayer().getRank());
+			String roleNames[] = new String[roles.length];
+			for (int i = 0; i < roles.length; i++){
+				if (roles[i] != null){
+					roleNames[i] = roles[i].getName();
+				}
+			}
+			view.roleOptsPopulate(roleNames);
+			view.showRoleOpts(true);
+		}
+	}
+
+	public void handleTakePicked(String choice) {
+		view.showRoleOpts(false);
+		//player.take
+		game.getPlayer().takeRole(choice);
+		//view.update(params)
+		ArrayList<Character> opt = new ArrayList<Character>();
+		opt.add('e');
+		view.startTurn(opt);
 	}
 
 	public void handleAct() {
@@ -25,7 +50,6 @@ public class BoardController {
 		if (game.getPlayer().getRole() == null){
 			view.adjLocPopulate(game.getPlayer().getLocation().getAdjNames());
 			view.showAdjLoc(true);
-			System.out.println("triggered handleMove");
 		}
 	}
 
@@ -36,16 +60,21 @@ public class BoardController {
 		for (int i = 0; i < game.getNumPlayers(); i++){
 			int r = game.getPlayer(i + 1).getLocation().getRoomInd();
 			if (r == movedR && game.getPlayer(i + 1).getRole() == null){
-				System.out.println("moving a dude! player: "+(i + 1));
+				if (game.getPlayer(i + 1).getLocation().getScene() != null && !game.getPlayer(i + 1).getLocation().getScene().getFaceUp()){
+					game.getPlayer(i + 1).getLocation().getScene().flip();
+					view.revealCard(r, game.getPlayer(i + 1).getLocation().getScene().getCardNum());
+				}
 				view.movePlayer(i, r, -1, x);
 				x++;
-			} else {
-				System.out.println("skipped over");
-				System.out.println("r: "+r+", movedR: "+movedR);
 			}
 		}
 		//maybe code for ask if want role here
-		game.endTurn();
+		ArrayList<Character> opt = new ArrayList<Character>();
+		if (game.getPlayer().getLocation().hasRolesAvail() && game.getPlayer().canTakeRole()){
+			opt.add('t');
+		}
+		opt.add('e');
+		view.startTurn(opt);
 	}
 
 	public void handleRehearse() {
@@ -63,5 +92,9 @@ public class BoardController {
 		int creds = game.getPlayer().getBank().getCredits();
         int dols = game.getPlayer().getBank().getDollars();
         view.displayStatus(game.getDaysLeft(), game.getScenesLeft(), game.getCurrentTurn(), creds, dols);
+	}
+
+	public void showCardBacks(){
+		view.showCardBacks();
 	}
 }

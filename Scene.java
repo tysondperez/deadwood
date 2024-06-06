@@ -8,9 +8,11 @@ public class Scene {
 	private int budget;
 	private Location assignedTo;
 	private boolean faceUp;
+	private int cardNum;
 
 	//this method is called with a random unused i from 0-39
 	public Scene(int i, Location l){
+		cardNum = i;
 		name = Get_Info.cardName[i];
 		budget = Get_Info.budget[i];
 		assignedTo = l;
@@ -35,22 +37,11 @@ public class Scene {
 		}
 	}
 
-	public void printSceneInfo(){
-		if (faceUp){
-			System.out.println("\tRoles Available: "+assignedTo.getNumRolesAvail());
-			System.out.println("\tShots Remaining: "+assignedTo.getShots());
-		} else {
-			int count = 0;
-			Role[] locRoles = assignedTo.getRolesAvail();
-			for (int i = 0; i < locRoles.length; i++){
-				if (locRoles[i] != null && locRoles[i].getName() != null){
-					if (!locRoles[i].isTaken() && !locRoles[i].isOnCard()){
-						count++;
-					}
-				}
-			}
-			System.out.println("\tRoles Available: "+count+" + ??? on card");
-			System.out.println("\tShots Remaining: ");
-		}
+	public boolean getFaceUp(){
+		return faceUp;
+	}
+
+	public int getCardNum(){
+		return cardNum;
 	}
 }

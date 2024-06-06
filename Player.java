@@ -37,65 +37,13 @@ public class Player {
 				curLocation.addPlayer(this);
 			}
 		}
-		if (curLocation.getScene() != null){
-			curLocation.getScene().flip();
-		}
 		System.out.println("Moved to "+curLocation.getName()+"!");
 		return curLocation.getRoomInd();
 	}
 
-	public void takeRole(Scanner input){
-		Role rolesAvail[] = curLocation.getRolesAvail();
+	public void takeRole(String choice){
+		Role rolesAvail[] = curLocation.getRolesAvail(rank);
 		int i = 0;
-		while (i < rolesAvail.length){
-			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
-				if (rolesAvail[i].getLevel() > rank){
-					System.out.print("Unavailable (rank too low): ");
-				}
-				else if (rolesAvail[i].isOnCard()){
-					System.out.print("On Card: ");
-				} else {
-					System.out.print("Off Card: ");
-				}
-				rolesAvail[i].printInfo();
-			}
-			i++;
-		}
-		boolean choiceListed = false;
-		System.out.print("Which role would you like to take? ");
-		input.nextLine();
-		String choice = input.nextLine();
-		i = 0;
-		while (i < rolesAvail.length){
-			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
-				if (rolesAvail[i].getName().equals(choice)){
-					if (rolesAvail[i].getLevel() > rank){
-						System.out.print("Role Unavailable - ");
-					} else {
-						choiceListed = true;
-					}
-				}
-			}
-			i++;
-		}
-		while (!choiceListed){
-			System.out.print("Invalid Input! Please try again: ");
-			choice = input.nextLine();
-			i = 0;
-			while (i < rolesAvail.length){
-				if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
-					if (rolesAvail[i].getName().equals(choice)){
-						if (rolesAvail[i].getLevel() > rank){
-							System.out.print("Role Unavailable - ");
-						} else {
-							choiceListed = true;
-						}
-					}
-				}
-				i++;
-			}
-		}
-		i = 0;
 		while (i < rolesAvail.length && rolesAvail[i] != null){
 			if (rolesAvail[i] != null && rolesAvail[i].getName() != null){
 				if (rolesAvail[i].getName().equals(choice)){
@@ -246,7 +194,7 @@ public class Player {
 	}
 
 	public boolean canTakeRole() {
-		Role[] avail = curLocation.getRolesAvail();
+		Role[] avail = curLocation.getRolesAvail(rank);
 		for (int i = 0; i < avail.length; i++){
 			if (avail[i] != null && avail[i].getName() != null){
 				if (avail[i].getLevel() <= rank){

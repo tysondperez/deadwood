@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -28,6 +26,7 @@ public class Deadwood{
         BoardController controller = new BoardController(game, view);
         game.setController(controller);
         view.setController(controller);
+        view.showCardBacks();
         view.createPlayers(numP, GameManager.colors);
         controller.updateView();
         controller.startTurn();

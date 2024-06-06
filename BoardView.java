@@ -1,15 +1,10 @@
 /*
-
-   Deadwood GUI helper file
-   Author: Moushumi Sharmin
-   This file shows how to create a simple GUI using Java Swing and Awt Library
-   Classes Used: JFrame, JLabel, JButton, JLayeredPane
-
+   Credit to Moushumi Sharmin for the skeleton of this code
+   It has been heavily modified but the core principle remains the same
 */
 
 import java.awt.*;
 import javax.swing.*;
-import javax.imageio.ImageIO;
 import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -47,6 +42,7 @@ public class BoardView extends JFrame {
    JButton white;
    
    JComboBox<String> adjLoc;
+   JComboBox<String> roleOpts;
    boolean isUserInput;
 
    // JLayered Pane
@@ -90,7 +86,7 @@ public class BoardView extends JFrame {
       partslabel = new JLabel[40]; //4 parts max per scene, null if nothing
       
       //Set Train Station with assets
-      roomlabel[0] = new JLabel("Train Station");
+      roomlabel[0] = new JLabel();
       roomlabel[0].setBounds(21, 69, 205, 115);
       bPane.add(roomlabel[0], new Integer(1)); //lower layer?
       
@@ -196,7 +192,7 @@ public class BoardView extends JFrame {
       bPane.add(partslabel[15], new Integer(1));
       
       //Create Main Street with assets
-      roomlabel[4] = new JLabel("Main Street");
+      roomlabel[4] = new JLabel();
       roomlabel[4].setBounds(969, 28, 205, 115);
       bPane.add(roomlabel[4], new Integer(1));
       
@@ -470,13 +466,25 @@ public class BoardView extends JFrame {
          @Override
          public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED && isUserInput) {
-               System.out.println("triggered selection: "+(String) adjLoc.getSelectedItem());
                controller.handleMovePicked((String) adjLoc.getSelectedItem());
             }
          }
       });
       bPane.add(adjLoc, new Integer(2));
       adjLoc.setVisible(false);
+
+      roleOpts = new JComboBox<String>();
+      roleOpts.setBounds(icon.getIconWidth()+10, 30,110, 20);
+      roleOpts.addItemListener(new ItemListener() {
+         @Override
+         public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED && isUserInput) {
+               controller.handleTakePicked((String) roleOpts.getSelectedItem());
+            }
+         }
+      });
+      bPane.add(roleOpts, new Integer(2));
+      roleOpts.setVisible(false);
 
       scenesLeftLabel = new JLabel();
       scenesLeftLabel.setBounds(icon.getIconWidth()+10, 285,110, 10);
@@ -573,11 +581,41 @@ public class BoardView extends JFrame {
       isUserInput = true;
    }
 
+   public void roleOptsPopulate(String names[]){
+      isUserInput = false;
+      roleOpts.removeAllItems();
+      roleOpts.addItem("--Select--");
+      for (int i = 0; i < names.length; i++){
+			if (names[i] != null){
+				roleOpts.addItem(names[i]);
+			}
+		}
+      isUserInput = true;
+   }
+
+   public void showRoleOpts(boolean b){
+      roleOpts.setVisible(b);
+   }
+
    // public void actionInvalid(String s){
    //    //code that tells user the action they tried to take is invalid
    //    invalidLabel.setText("Sorry, you can't take the "+s+" action right now!\nSelect another option.");
    //    invalidLabel.setVisible(true);
    // }
+
+   public void revealCard(int roomInd, int cardInd){
+      String zero;
+      zero = (cardInd < 10 ? "0" : "");
+      roomlabel[roomInd].setIcon(new ImageIcon(imagePath+"/cards/"+zero+(cardInd + 1)+".png"));
+      roomlabel[roomInd].setVisible(true);
+   }
+
+   public void showCardBacks(){
+      for (int i = 0; i < roomlabel.length - 2; i++){
+         roomlabel[i].setIcon(new ImageIcon(imagePath+"/cards/CardBack-small.jpg"));
+         roomlabel[i].setVisible(true);
+      }
+   }
 
    public void setController(BoardController controller){
         this.controller = controller;
@@ -600,7 +638,19 @@ public class BoardView extends JFrame {
          else if (e.getSource()== bMove){
             System.out.println("Move is Selected\n");
             controller.handleMove();
-         }         
+         }
+         else if (e.getSource()== bTake){
+            System.out.println("Take is Selected\n");
+            controller.handleTake();
+         }
+         else if (e.getSource()== bUpgrade){
+            System.out.println("Upgrade is Selected\n");
+            controller.handleUpgrade();
+         }
+         else if (e.getSource()== bEnd){
+            System.out.println("End is Selected\n");
+            controller.handleEndTurn();
+         } 
       }
 
       public void mousePressed(MouseEvent e) {
