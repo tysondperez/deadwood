@@ -16,7 +16,6 @@ public class Player {
 		playerNum = pNum;
 		color = GameManager.colors[pNum - 1];
 		rank = sR;
-		rank = 6;
 		//set role to null
 		curRole = null;
 		//set default loc to Trailer
@@ -96,7 +95,6 @@ public class Player {
 
 	public int act(){
 		int diceRoll = GameManager.rollDice();
-		diceRoll = 6;
 		int budget = curLocation.getScene().getBudget();
 		System.out.println("Rolling dice...\n");
 		System.out.println("You rolled a "+diceRoll+"!");

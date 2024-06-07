@@ -22,7 +22,6 @@ public class GameManager {
         else {
             daysLeft = 4;
         }
-        daysLeft = 1;
 
         int startCred = 0;
         int startRank = 1;
@@ -64,7 +63,7 @@ public class GameManager {
         } else {
             currentTurn ++;
         }
-        if (scenesLeft <= 7){
+        if (scenesLeft <= 1){
             endDay();
         } else {
             controller.startTurn();
