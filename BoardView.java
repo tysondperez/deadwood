@@ -27,6 +27,7 @@ public class BoardView extends JFrame {
    JLabel dollarsLabel;
    JLabel rehearsedLabel;
    JLabel invalidLabel;
+   JLabel rollLabel;
    JLabel roomlabel[];
    JLabel takeslabel[];
    JLabel partslabel[];
@@ -375,9 +376,14 @@ public class BoardView extends JFrame {
       for (int i = 0; i < roomlabel.length; i++){
          roomlabel[i].setVisible(false);
       }
+      for (int i = 0; i < ranklabelC.length; i++){
+         ranklabelC[i].setVisible(false);
+         ranklabelD[i].setVisible(false);
+      }
       for (int i = 0; i < takeslabel.length; i++){
          if (takeslabel[i] != null){
-            takeslabel[i].setVisible(false);
+            takeslabel[i].setIcon(new ImageIcon(imagePath+"shot.png"));
+            takeslabel[i].setVisible(true);
          }
       }
       for (int i = 0; i < partslabel.length; i++){
@@ -387,15 +393,6 @@ public class BoardView extends JFrame {
       }
 
       //--------------------------------------- End room creation --------------------------
-      // Add a scene card to this room
-      cardlabel = new JLabel();
-      ImageIcon cIcon =  new ImageIcon(imagePath+"/cards/01.png");
-      cardlabel.setIcon(cIcon); 
-      cardlabel.setBounds(20,65,cIcon.getIconWidth()+2,cIcon.getIconHeight());
-      cardlabel.setOpaque(true);
-   
-      // Add the card to the lower layer
-      bPane.add(cardlabel, new Integer(1));
       
    
       // Create the Menu for action buttons
@@ -488,6 +485,13 @@ public class BoardView extends JFrame {
       bPane.add(roleOpts, new Integer(2));
       roleOpts.setVisible(false);
 
+      rollLabel = new JLabel("You Rolled:");
+      rollLabel.setBounds(icon.getIconWidth()+25, 30,110, 70);
+      rollLabel.setVerticalTextPosition(JLabel.TOP);
+      rollLabel.setHorizontalTextPosition(JLabel.CENTER);
+      rollLabel.setVisible(false);
+      bPane.add(rollLabel, new Integer(2));
+
       scenesLeftLabel = new JLabel();
       scenesLeftLabel.setBounds(icon.getIconWidth()+10, 285,110, 10);
       bPane.add(scenesLeftLabel,new Integer(2));
@@ -529,12 +533,12 @@ public class BoardView extends JFrame {
       rehearsedLabel.setText("R. Chips: "+ tR);
    }
 
-   public void createPlayers(int n, String [] colors){
+   public void createPlayers(int n, String [] colors, int sR){
       playerlabels = new JLabel[n];
       pIcons = new ImageIcon[n];
       for (int i = 0; i < n; i++){
          playerlabels[i] = new JLabel();
-         ImageIcon pIcon = new ImageIcon(imagePath+"dice/"+colors[i]+"1.png");
+         ImageIcon pIcon = new ImageIcon(imagePath+"dice/"+colors[i]+sR+".png");
          pIcons[i] = pIcon;
          playerlabels[i].setIcon(pIcon);
          playerlabels[i].setBounds((991 + (i%4)*pIcon.getIconWidth()),(248 + (i/4)*pIcon.getIconHeight()),pIcon.getIconWidth(),pIcon.getIconHeight());  
@@ -684,6 +688,33 @@ public class BoardView extends JFrame {
          roomlabel[i].setIcon(new ImageIcon(imagePath+"/cards/CardBack-small.jpg"));
          roomlabel[i].setVisible(true);
       }
+   }
+
+   public void showRoll(int r){
+      rollLabel.setIcon(new ImageIcon(imagePath+"/dice/w"+r+".png"));
+      rollLabel.setIconTextGap(10);
+      rollLabel.setVisible(true);
+   }
+
+   public void hideRoll(){
+      rollLabel.setVisible(false);
+   }
+
+   public void removeShot(int rI, int sL){
+      if (sL == 2){
+         sL = 0;
+      } else if (sL == 1){
+         sL = 1;
+      } else {
+         sL = 2;
+         roomlabel[rI].setVisible(false);
+      }
+      //last shot removed () in r0 is t[0*3 + 2]
+      //second removed is + 1
+      //first removed is + 0
+      //rI 0; shot1 = take[rI*3]
+      //sL 0 = 
+      takeslabel[(rI * 3) + sL].setVisible(false);
    }
 
    public void setController(BoardController controller){

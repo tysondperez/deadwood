@@ -12,6 +12,7 @@ public class BoardController {
 	
 	public void handleEndTurn() {
 		view.hideCombos();
+		view.hideRoll();
 		game.endTurn();
 	}
 	public void handleUpgrade() {
@@ -57,7 +58,14 @@ public class BoardController {
 
 	public void handleAct() {
 		if (game.getPlayer().getRole() != null){
-			game.getPlayer().act();
+			view.hideAllNotEnd();
+			int roll = game.getPlayer().act();
+			if (roll > 10){
+				roll -= 10;
+				view.removeShot(game.getPlayer().getLocation().getRoomInd(), game.getPlayer().getLocation().getShots());
+			}
+			view.showRoll(roll);
+			updateView();
 		}
 	}
 

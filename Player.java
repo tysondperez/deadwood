@@ -115,7 +115,7 @@ public class Player {
 		return timesRehearsed;
 	}
 
-	public void act(){
+	public int act(){
 		int diceRoll = GameManager.rollDice();
 		int budget = curLocation.getScene().getBudget();
 		System.out.println("Rolling dice...\n");
@@ -126,12 +126,14 @@ public class Player {
 				" + your rehearsal chips ("+timesRehearsed+
 				") was higher than/equal to the budget ("+budget+")!");
 			curLocation.removeShot();
+			diceRoll += 10;
 		} else {
 			System.out.println("Sorry! Your roll, "+diceRoll+
 					" + your rehearsal chips ("+timesRehearsed+
 					") was lower than the budget ("+budget+").");
 		}
 		curRole.getRewards(success, this);
+		return diceRoll;
 	}
 
 	public boolean canRehearse(){

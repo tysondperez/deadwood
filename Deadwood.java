@@ -27,7 +27,7 @@ public class Deadwood{
         game.setController(controller);
         view.setController(controller);
         view.showCardBacks();
-        view.createPlayers(numP, GameManager.colors);
+        view.createPlayers(numP, GameManager.colors, game.getPlayer().getRank());
         controller.updateView();
         controller.startTurn();
     }  
