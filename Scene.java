@@ -44,4 +44,13 @@ public class Scene {
 	public int getCardNum(){
 		return cardNum;
 	}
+
+	public int getOnRoles(){
+		int count = 0;
+		for (int j = 0; j < roles.length; j++){
+			if (roles [j] != null && roles[j].getName() != null)
+			count++;
+		}
+		return count;
+	}
 }

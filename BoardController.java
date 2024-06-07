@@ -11,6 +11,7 @@ public class BoardController {
 	}
 	
 	public void handleEndTurn() {
+		view.hideCombos();
 		game.endTurn();
 	}
 	public void handleUpgrade() {
@@ -18,10 +19,13 @@ public class BoardController {
 	}
 	public void handleTake() {
 		if (game.getPlayer().getRole() == null){
+			view.hideAllNotEnd();
+			System.out.println("rank: ");
 			Role roles[] = game.getPlayer().getLocation().getRolesAvail(game.getPlayer().getRank());
 			String roleNames[] = new String[roles.length];
 			for (int i = 0; i < roles.length; i++){
 				if (roles[i] != null){
+					System.out.println("role avail: "+roles[i].getName());
 					roleNames[i] = roles[i].getName();
 				}
 			}
@@ -34,7 +38,18 @@ public class BoardController {
 		view.showRoleOpts(false);
 		//player.take
 		game.getPlayer().takeRole(choice);
-		//view.update(params)
+		int p = game.getPlayer().getpNum() - 1;
+		int r = game.getPlayer().getLocation().getRoomInd();
+		int pI = game.getPlayer().getRole().getPartInd();
+		int j = game.getPlayer().getRole().getCardPos();
+		if (game.getPlayer().getLocation().getScene() == null){
+			
+			view.movePlayer(p, r, pI, 0, j);
+		}
+		else {
+			int onRoles = game.getPlayer().getLocation().getScene().getOnRoles();
+			view.movePlayer(p, r, pI, onRoles, j);
+		}
 		ArrayList<Character> opt = new ArrayList<Character>();
 		opt.add('e');
 		view.startTurn(opt);
@@ -48,6 +63,7 @@ public class BoardController {
 
 	public void handleMove() {
 		if (game.getPlayer().getRole() == null){
+			view.hideAllNotEnd();
 			view.adjLocPopulate(game.getPlayer().getLocation().getAdjNames());
 			view.showAdjLoc(true);
 		}
@@ -64,7 +80,7 @@ public class BoardController {
 					game.getPlayer(i + 1).getLocation().getScene().flip();
 					view.revealCard(r, game.getPlayer(i + 1).getLocation().getScene().getCardNum());
 				}
-				view.movePlayer(i, r, -1, x);
+				view.movePlayer(i, r, -1, x, -1);
 				x++;
 			}
 		}

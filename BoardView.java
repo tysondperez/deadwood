@@ -154,14 +154,14 @@ public class BoardView extends JFrame {
       takeslabel[8].setBounds(682, 675, 47, 47);
       bPane.add(takeslabel[8], new Integer(1));
       
-      partslabel[8] = null;
-      partslabel[9] = null;
-      partslabel[10] = new JLabel("Dead Man");
-      partslabel[10].setBounds(857, 730, 46, 46);
-      bPane.add(partslabel[10], new Integer(1));
-      partslabel[11] = new JLabel("Crying Woman");
-      partslabel[11].setBounds(858, 809, 46, 46);
-      bPane.add(partslabel[11], new Integer(1));
+      partslabel[8] = new JLabel("Dead Man");
+      partslabel[8].setBounds(857, 730, 46, 46);
+      bPane.add(partslabel[8], new Integer(1));
+      partslabel[9] = new JLabel("Crying Woman");
+      partslabel[9].setBounds(858, 809, 46, 46);
+      bPane.add(partslabel[9], new Integer(1));
+      partslabel[10] = null;
+      partslabel[11] = null;
       
       //Create Hotel with assets
       roomlabel[3] = new JLabel("Hotel");
@@ -230,14 +230,15 @@ public class BoardView extends JFrame {
       takeslabel[17].setBounds(442, 156, 47, 47);
       bPane.add(takeslabel[17], new Integer(1));
       
-      partslabel[20] = null;
-      partslabel[21] = null;
-      partslabel[22] = new JLabel("Prisoner In Cell");
-      partslabel[22].setBounds(519, 25, 46, 46);
-      bPane.add(partslabel[22], new Integer(1));
-      partslabel[23] = new JLabel("Feller in Irons");
-      partslabel[23].setBounds(519, 105, 46, 46);
-      bPane.add(partslabel[23], new Integer(1));
+      
+      partslabel[20] = new JLabel("Prisoner In Cell");
+      partslabel[20].setBounds(519, 25, 46, 46);
+      bPane.add(partslabel[20], new Integer(1));
+      partslabel[21] = new JLabel("Feller in Irons");
+      partslabel[21].setBounds(519, 105, 46, 46);
+      bPane.add(partslabel[21], new Integer(1));
+      partslabel[22] = null;
+      partslabel[23] = null;
       
       //Create General Store with assets
       roomlabel[6] = new JLabel("General Store");
@@ -252,14 +253,14 @@ public class BoardView extends JFrame {
       takeslabel[20].setBounds(313, 330, 47, 47);
       bPane.add(takeslabel[20], new Integer(1));
       
-      partslabel[24] = null;
-      partslabel[25] = null;
-      partslabel[26] = new JLabel("Man in Overalls");
-      partslabel[26].setBounds(236, 276, 46, 46);
-      bPane.add(partslabel[26], new Integer(1));
-      partslabel[27] = new JLabel("Mister Keach");
-      partslabel[27].setBounds(236, 358, 46, 46);
-      bPane.add(partslabel[27], new Integer(1));
+      partslabel[24] = new JLabel("Man in Overalls");
+      partslabel[24].setBounds(236, 276, 46, 46);
+      bPane.add(partslabel[24], new Integer(1));
+      partslabel[25] = new JLabel("Mister Keach");
+      partslabel[25].setBounds(236, 358, 46, 46);
+      bPane.add(partslabel[25], new Integer(1));
+      partslabel[26] = null;
+      partslabel[27] = null;
       
       //Create Ranch with assets
       roomlabel[7] = new JLabel("Ranch");
@@ -274,16 +275,16 @@ public class BoardView extends JFrame {
       takeslabel[23].setBounds(525, 473, 47, 47);
       bPane.add(takeslabel[23], new Integer(1));
       
-      partslabel[28] = null;
-      partslabel[29] = new JLabel("Shot in Leg");
-      partslabel[29].setBounds(412, 608, 46, 46);
+      partslabel[28] = new JLabel("Shot in Leg");
+      partslabel[28].setBounds(412, 608, 46, 46);
+      bPane.add(partslabel[28], new Integer(1));
+      partslabel[29] = new JLabel("Saucy Fred");
+      partslabel[29].setBounds(488, 608, 46, 46);
       bPane.add(partslabel[29], new Integer(1));
-      partslabel[30] = new JLabel("Saucy Fred");
-      partslabel[30].setBounds(488, 608, 46, 46);
+      partslabel[30] = new JLabel("Man Under Horse");
+      partslabel[30].setBounds(488, 525, 46, 46);
       bPane.add(partslabel[30], new Integer(1));
-      partslabel[31] = new JLabel("Man Under Horse");
-      partslabel[31].setBounds(488, 525, 46, 46);
-      bPane.add(partslabel[31], new Integer(1));
+      partslabel[31] = null;
       
       //Create Bank with assets
       roomlabel[8] = new JLabel("Bank");
@@ -296,14 +297,14 @@ public class BoardView extends JFrame {
       takeslabel[26].setBounds(840, 549, 47, 47);
       bPane.add(takeslabel[26], new Integer(1));
       
-      partslabel[32] = null;
-      partslabel[33] = null;
-      partslabel[34] = new JLabel("Suspicious Gentleman");
-      partslabel[34].setBounds(911, 554, 46, 46);
-      bPane.add(partslabel[34], new Integer(1));
-      partslabel[35] = new JLabel("Flustered Teller");
-      partslabel[35].setBounds(911, 470, 46, 46);
-      bPane.add(partslabel[35], new Integer(1));
+      partslabel[32] = new JLabel("Suspicious Gentleman");
+      partslabel[32].setBounds(911, 554, 46, 46);
+      bPane.add(partslabel[32], new Integer(1));
+      partslabel[33] = new JLabel("Flustered Teller");
+      partslabel[33].setBounds(911, 470, 46, 46);
+      bPane.add(partslabel[33], new Integer(1));
+      partslabel[34] = null;
+      partslabel[35] = null;
       
       //Create Saloon with assets
       roomlabel[9] = new JLabel("Saloon");
@@ -318,14 +319,14 @@ public class BoardView extends JFrame {
       takeslabel[29].setBounds(679, 216, 47, 47);
       bPane.add(takeslabel[29], new Integer(1));
       
-      partslabel[36] = null;
-      partslabel[37] = null;
-      partslabel[38] = new JLabel("Reluctant Farmer");
-      partslabel[38].setBounds(877, 352, 46, 46);
-      bPane.add(partslabel[38], new Integer(1));
-      partslabel[39] = new JLabel("Woman in Red Dress");
-      partslabel[39].setBounds(877, 276, 46, 46);
-      bPane.add(partslabel[39], new Integer(1));
+      partslabel[36] = new JLabel("Reluctant Farmer");
+      partslabel[36].setBounds(877, 352, 46, 46);
+      bPane.add(partslabel[36], new Integer(1));
+      partslabel[37] = new JLabel("Woman in Red Dress");
+      partslabel[37].setBounds(877, 276, 46, 46);
+      bPane.add(partslabel[37], new Integer(1));
+      partslabel[38] = null;
+      partslabel[39] = null;
       
       //create trailer and office and ranks
       roomlabel[10] = new JLabel("Trailer");
@@ -532,7 +533,7 @@ public class BoardView extends JFrame {
       }
    }
 
-   public void movePlayer(int n, int roomInd, int partInd, int playersThere){
+   public void movePlayer(int n, int roomInd, int partInd, int playersThere, int cardPos){
       //top left: trailers 10, casting 11
       //bot left: saloon 9, bank 8, church 2, hideout 1, jail 5, hotel 3, ranch 7, train 0
       //bot right: main 4, general store 6
@@ -554,6 +555,51 @@ public class BoardView extends JFrame {
             newy = (cury + temp.getHeight());
          }
          playerlabels[n].setLocation(newx, newy);
+
+      } else if (partInd == -2){
+         JLabel temp = roomlabel[roomInd];
+         int curx = (int) temp.getLocation().getX();
+         int cury = (int) temp.getLocation().getY();
+         int newx = 0;
+         int newy = 0;
+         int numOnCard = playersThere;
+         if (numOnCard == 1){
+            newx = (curx + (temp.getWidth() / 2)) 
+               - (playerlabels[n].getIcon().getIconWidth() / 2) + 1;
+            newy = cury + playerlabels[n].getIcon().getIconHeight() + 7;
+         } else if (numOnCard == 2){
+            if (cardPos == 0){
+               newx = curx + playerlabels[n].getIcon().getIconWidth() + 13;
+               newy = cury + playerlabels[n].getIcon().getIconHeight() + 7;
+            } else {
+               newx = curx + (2*playerlabels[n].getIcon().getIconWidth()) + 36;
+               newy = cury + playerlabels[n].getIcon().getIconHeight() + 7;
+            }
+         } else {
+            if (cardPos == 0){
+               newx = curx + 20;
+               newy = cury + playerlabels[n].getIcon().getIconHeight() + 7;
+            } else if (cardPos == 1){
+               newx = (curx + (temp.getWidth() / 2)) 
+                  - (playerlabels[n].getIcon().getIconWidth() / 2) + 1;
+               newy = cury + playerlabels[n].getIcon().getIconWidth() + 7;
+            } else {
+               newx = curx + (2*playerlabels[n].getIcon().getIconHeight()) + 65;
+               newy = cury + playerlabels[n].getIcon().getIconWidth() + 7;
+            }
+         }
+         playerlabels[n].setLocation(newx, newy);
+
+      } else {
+         JLabel temp = partslabel[partInd];
+         if (partslabel[partInd] == null){
+            System.out.println("partlabel["+partInd + "] is null, abort move");
+         } else {
+            int x = (int) temp.getLocation().getX();
+            int y = (int) temp.getLocation().getY();
+            playerlabels[n].setLocation(x + 3, y + 3);
+         }
+         
       }
    }
 
@@ -567,6 +613,19 @@ public class BoardView extends JFrame {
 
    public void showAdjLoc(boolean b){
       adjLoc.setVisible(b);
+   }
+
+   public void hideAllNotEnd(){
+      bAct.setVisible(false);
+      bRehearse.setVisible(false);
+      bMove.setVisible(false);
+      bTake.setVisible(false);
+      bUpgrade.setVisible(false);
+   }
+
+   public void hideCombos(){
+      adjLoc.setVisible(false);
+      roleOpts.setVisible(false);
    }
 
    public void adjLocPopulate(String names[]){
