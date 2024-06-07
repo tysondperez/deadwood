@@ -707,14 +707,20 @@ public class BoardView extends JFrame {
          sL = 1;
       } else {
          sL = 2;
-         roomlabel[rI].setVisible(false);
+         if (roomlabel[rI] != null){
+            roomlabel[rI].setVisible(false);
+         }
+         
       }
       //last shot removed () in r0 is t[0*3 + 2]
       //second removed is + 1
       //first removed is + 0
       //rI 0; shot1 = take[rI*3]
       //sL 0 = 
-      takeslabel[(rI * 3) + sL].setVisible(false);
+      if (takeslabel[(rI*3) + sL] != null){
+         takeslabel[(rI * 3) + sL].setVisible(false);
+      }
+      
    }
 
    public void setController(BoardController controller){
