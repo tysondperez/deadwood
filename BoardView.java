@@ -737,7 +737,6 @@ public class BoardView extends JFrame {
             controller.handleAct();
          }
          else if (e.getSource()== bRehearse){
-            cardlabel.setVisible(true);
             System.out.println("Rehearse is Selected\n");
             controller.handleRehearse();
          }
