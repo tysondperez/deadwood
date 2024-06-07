@@ -57,7 +57,7 @@ public class Player {
 		System.out.println("\nRole Taken! Your role: "+curRole.getName());
 	}
 
-	public void upgrade(Scanner input){
+	public void upgrade(String pType, int targetRank){
 		System.out.println("Current Rank: "+rank);
         System.out.println("Available Credits: "+playerBank.getCredits());
         System.out.println("Available Dollars: "+playerBank.getDollars());
@@ -68,34 +68,12 @@ public class Player {
 		System.out.println("     5     |     28    |     20    ");
 		System.out.println("     6     |     40    |     25    ");
 		System.out.print("Which rank would you like to upgrade to? ");
-		int targetRank = input.nextInt();
-		while (!canUpgrade(targetRank)){
-			if (targetRank > 6){
-				System.out.println("Target Rank is too high! The maximum Rank is 6, select another rank: ");
-			} else {
-				System.out.println("Insufficient Funds! Please select another rank: ");
-			}
-            targetRank = input.nextInt();
-		}
 		System.out.print("Would you like to pay with dollars (d) or credits (c)? ");
-		char choice = input.next().charAt(0);
-		while ((choice != 'd') && (choice != 'c')){
-			System.out.println("Invalid Input! Please try again: ");
-			choice = input.nextLine().charAt(0);
-		}
-		while (!canUpgrade(targetRank, choice)){
-			System.out.println("Insufficient Funds! Please select the other option: ");
-            choice = input.nextLine().charAt(0);
-			while ((choice != 'd') && (choice != 'c')){
-				System.out.println("Invalid Input! Please try again: ");
-				choice = input.nextLine().charAt(0);
-			}
-		}
-		if (choice == 'c'){
+		if (pType.equals("Credits")){
 			playerBank.updateCred(-(5 * (targetRank - 1)));
 			rank = targetRank;
 		}
-		else if (choice == 'd'){
+		else if (pType.equals("Dollars")){
 			playerBank.updateDol(-((targetRank * targetRank) + targetRank - 2));
 			rank = targetRank;
 		}

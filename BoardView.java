@@ -26,7 +26,7 @@ public class BoardView extends JFrame {
    JLabel creditsLabel;
    JLabel dollarsLabel;
    JLabel rehearsedLabel;
-   JLabel invalidLabel;
+   JLabel successLabel;
    JLabel rollLabel;
    JLabel roomlabel[];
    JLabel takeslabel[];
@@ -45,6 +45,8 @@ public class BoardView extends JFrame {
    
    JComboBox<String> adjLoc;
    JComboBox<String> roleOpts;
+   JComboBox<String> upOpts;
+   JComboBox<String> payments;
    boolean isUserInput;
 
    // JLayered Pane
@@ -454,10 +456,10 @@ public class BoardView extends JFrame {
       daysLeftLabel.setBounds(icon.getIconWidth()+10, 270,110, 10);
       bPane.add(daysLeftLabel,new Integer(2));
 
-      // invalidLabel = new JLabel();
-      // invalidLabel.setBounds(500, 400 ,200, 50);
-      // invalidLabel.setVisible(false);
-      // bPane.add(invalidLabel,new Integer(2));
+      successLabel = new JLabel();
+      successLabel.setBounds(icon.getIconWidth()+3, 100,130, 70);;
+      successLabel.setVisible(false);
+      bPane.add(successLabel,new Integer(2));
 
       adjLoc = new JComboBox<String>();
       adjLoc.setBounds(icon.getIconWidth()+10, 30,110, 20);
@@ -484,6 +486,32 @@ public class BoardView extends JFrame {
       });
       bPane.add(roleOpts, new Integer(2));
       roleOpts.setVisible(false);
+
+      upOpts = new JComboBox<String>();
+      upOpts.setBounds(icon.getIconWidth()+10, 30,110, 20);
+      upOpts.addItemListener(new ItemListener() {
+         @Override
+         public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED && isUserInput) {
+               controller.handleUpPicked((String) upOpts.getSelectedItem());
+            }
+         }
+      });
+      bPane.add(upOpts, new Integer(2));
+      upOpts.setVisible(false);
+      
+      payments = new JComboBox<String>();
+      payments.setBounds(icon.getIconWidth()+10, 80,110, 20);
+      payments.addItemListener(new ItemListener() {
+         @Override
+         public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED && isUserInput) {
+               controller.handlePaymentsPicked((String) payments.getSelectedItem());
+            }
+         }
+      });
+      bPane.add(payments, new Integer(2));
+      payments.setVisible(false);
 
       rollLabel = new JLabel("You Rolled:");
       rollLabel.setBounds(icon.getIconWidth()+25, 30,110, 70);
@@ -545,6 +573,12 @@ public class BoardView extends JFrame {
          playerlabels[i].setVisible(true);
          bPane.add(playerlabels[i],new Integer(3));
       }
+   }
+
+   public void upgradePlayer(int rank, int p, String[] colors){
+      pIcons[p] = new ImageIcon(imagePath+"dice/"+colors[p]+rank+".png");
+      playerlabels[p].setIcon(pIcons[p]);
+      playerColorLabel.setIcon(pIcons[p]);
    }
 
    public void movePlayer(int n, int roomInd, int partInd, int playersThere, int cardPos){
@@ -629,6 +663,27 @@ public class BoardView extends JFrame {
       adjLoc.setVisible(b);
    }
 
+   public void showUpOpts(boolean b){
+      upOpts.setVisible(b);
+   }
+
+   public void showPayments(boolean b){
+      payments.setVisible(b);
+   }
+
+   public void showSuccess(boolean s){
+      if (s){
+         successLabel.setText("You succeeded!");
+      } else {
+         successLabel.setText("Sorry, you failed.");
+      }
+      successLabel.setVisible(true);
+   }
+
+   public void hideSuccess(){
+      successLabel.setVisible(false);
+   }
+
    public void hideAllNotEnd(){
       bAct.setVisible(false);
       bRehearse.setVisible(false);
@@ -640,6 +695,8 @@ public class BoardView extends JFrame {
    public void hideCombos(){
       adjLoc.setVisible(false);
       roleOpts.setVisible(false);
+      upOpts.setVisible(false);
+      payments.setVisible(false);
    }
 
    public void adjLocPopulate(String names[]){
@@ -663,6 +720,31 @@ public class BoardView extends JFrame {
 				roleOpts.addItem(names[i]);
 			}
 		}
+      isUserInput = true;
+   }
+
+   public void upOptsPopulate(boolean ranks[]){
+      isUserInput = false;
+      upOpts.removeAllItems();
+      upOpts.addItem("--Select--");
+      for (int i = 0; i < ranks.length; i++){
+			if (ranks[i]){
+				upOpts.addItem("Rank "+(i+1));
+			}
+		}
+      isUserInput = true;
+   }
+
+   public void paymentsPopulate(boolean types[]){
+      isUserInput = false;
+      payments.removeAllItems();
+      payments.addItem("--Select--");
+      if (types[0]){
+         payments.addItem("Credits");
+      }
+      if (types[1]){
+         payments.addItem("Dollars");
+      }
       isUserInput = true;
    }
 

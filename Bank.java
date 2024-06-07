@@ -9,6 +9,8 @@ public class Bank {
         bankOwner = p;
         creditBal = sC;
         dollarBal = 0;
+        creditBal = 100;
+        dollarBal = 100;
     }
 
     public void updateCred(int change){

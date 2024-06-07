@@ -4,6 +4,9 @@ public class BoardController {
 	
 	private GameManager game;
 	private BoardView view;
+
+	public int rankPicked;
+	private boolean movedYet;
 	
 	public BoardController(GameManager game, BoardView view) {
 		this.game = game;
@@ -13,11 +16,47 @@ public class BoardController {
 	public void handleEndTurn() {
 		view.hideCombos();
 		view.hideRoll();
+		view.hideSuccess();
 		game.endTurn();
+		movedYet = false;
 	}
+
 	public void handleUpgrade() {
-		
+		view.hideAllNotEnd();
+		boolean opts[] = new boolean[6];
+		if (game.getPlayer().canUpgrade()){
+			for (int i = game.getPlayer().getRank(); i < 6; i++){
+				opts[i] = game.getPlayer().canUpgrade(i);
+				System.out.println(opts[i]);
+			}
+			view.upOptsPopulate(opts);
+			view.showUpOpts(true);
+		}
 	}
+
+	public void handleUpPicked(String choice) {
+		view.showUpOpts(false);
+		int rank = Character.getNumericValue(choice.charAt(5));
+		rankPicked = rank;
+		boolean opts[] = new boolean[2];
+		opts[0] = game.getPlayer().canUpgrade(rank, 'c');
+		opts[1] = game.getPlayer().canUpgrade(rank, 'd');
+		view.paymentsPopulate(opts);
+		view.showPayments(true);
+	}
+
+	public void handlePaymentsPicked(String choice) {
+		game.getPlayer().upgrade(choice, rankPicked);
+		view.upgradePlayer(game.getPlayer().getRank(), game.getPlayer().getpNum() - 1, GameManager.colors);
+		ArrayList<Character> opt = new ArrayList<Character>();
+		opt.add('e');
+		if (!movedYet){
+			opt.add('m');
+		}
+		view.hideCombos();
+		view.startTurn(opt);
+	}
+
 	public void handleTake() {
 		if (game.getPlayer().getRole() == null){
 			view.hideAllNotEnd();
@@ -63,6 +102,9 @@ public class BoardController {
 			if (roll > 10){
 				roll -= 10;
 				view.removeShot(game.getPlayer().getLocation().getRoomInd(), game.getPlayer().getLocation().getShots());
+				view.showSuccess(true);
+			} else {
+				view.showSuccess(false);
 			}
 			view.showRoll(roll);
 			updateView();
@@ -92,10 +134,13 @@ public class BoardController {
 				x++;
 			}
 		}
-		//maybe code for ask if want role here
+		movedYet = true;
 		ArrayList<Character> opt = new ArrayList<Character>();
 		if (game.getPlayer().getLocation().hasRolesAvail() && game.getPlayer().canTakeRole()){
 			opt.add('t');
+		}
+		if (game.getPlayer().canUpgrade() && game.getPlayer().getLocation().getName().equals("Casting Office")){
+			opt.add('u');
 		}
 		opt.add('e');
 		view.startTurn(opt);
