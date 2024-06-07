@@ -22,6 +22,8 @@ public class GameManager {
         else {
             daysLeft = 4;
         }
+        daysLeft = 1;
+
         int startCred = 0;
         int startRank = 1;
         if (numPlayers == 5){
@@ -62,7 +64,7 @@ public class GameManager {
         } else {
             currentTurn ++;
         }
-        if (scenesLeft <= 1){
+        if (scenesLeft <= 7){
             endDay();
         } else {
             controller.startTurn();
@@ -86,7 +88,9 @@ public class GameManager {
                 players[i].setLocation(locations[10]);
                 locations[10].addPlayer(players[i]);
                 players[i].reset();
+                controller.returnPlayers(numPlayers);
             }
+            controller.startTurn();
         }     
     }
 
@@ -113,6 +117,7 @@ public class GameManager {
             }
         }
         System.out.println("\n\n\nCongrats, Player "+(winP + 1)+"! You win!");
+        controller.endGame(winP);
     }
 
     public static int rollDice(){

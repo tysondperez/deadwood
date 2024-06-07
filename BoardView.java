@@ -28,6 +28,7 @@ public class BoardView extends JFrame {
    JLabel rehearsedLabel;
    JLabel successLabel;
    JLabel rollLabel;
+   JLabel winLabel;
    JLabel roomlabel[];
    JLabel takeslabel[];
    JLabel partslabel[];
@@ -543,6 +544,11 @@ public class BoardView extends JFrame {
       rehearsedLabel = new JLabel();
       rehearsedLabel.setBounds(icon.getIconWidth()+10, 375,110, 15);
       bPane.add(rehearsedLabel,new Integer(2));
+
+      winLabel = new JLabel();
+      winLabel.setBounds(icon.getIconWidth()+10, 375,110, 15);
+      bPane.add(winLabel,new Integer(2));
+      winLabel.setVisible(false);
    }
 
   	public void displayStatus(int d, int s, int p, int c, int dol, int tR){
@@ -572,6 +578,14 @@ public class BoardView extends JFrame {
          playerlabels[i].setBounds((991 + (i%4)*pIcon.getIconWidth()),(248 + (i/4)*pIcon.getIconHeight()),pIcon.getIconWidth(),pIcon.getIconHeight());  
          playerlabels[i].setVisible(true);
          bPane.add(playerlabels[i],new Integer(3));
+      }
+   }
+
+   public void returnPlayers(int n){
+      for (int i = 0; i < n; i++){
+         Icon pIcon = playerlabels[i].getIcon();
+         playerlabels[i].setBounds((991 + (i%4)*pIcon.getIconWidth()),(248 + (i/4)*pIcon.getIconHeight()),pIcon.getIconWidth(),pIcon.getIconHeight());  
+         playerlabels[i].setVisible(true);
       }
    }
 
@@ -692,6 +706,18 @@ public class BoardView extends JFrame {
       bUpgrade.setVisible(false);
    }
 
+   public void hideAll(){
+      hideAllNotEnd();
+      bEnd.setVisible(false);
+      daysLeftLabel.setVisible(false);
+		scenesLeftLabel.setVisible(false);
+		activePlayerLabel.setVisible(false);
+		creditsLabel.setVisible(false);
+		dollarsLabel.setVisible(false);
+      rehearsedLabel.setVisible(false);
+      playerColorLabel.setVisible(false);
+   }
+
    public void hideCombos(){
       adjLoc.setVisible(false);
       roleOpts.setVisible(false);
@@ -803,6 +829,11 @@ public class BoardView extends JFrame {
          takeslabel[(rI * 3) + sL].setVisible(false);
       }
       
+   }
+
+   public void showWin(int p){
+      winLabel.setText("Player "+(p+1)+" wins!");
+      winLabel.setVisible(true);
    }
 
    public void setController(BoardController controller){

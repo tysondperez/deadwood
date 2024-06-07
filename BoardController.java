@@ -159,6 +159,16 @@ public class BoardController {
 		view.startTurn(game.printOptions());
 	}
 
+	public void returnPlayers(int n){
+		view.returnPlayers(n);
+	}
+
+	public void endGame(int p){
+		view.hideAll();
+		view.showWin(p);
+	}
+
+
 	public void updateView(){
 		int creds = game.getPlayer().getBank().getCredits();
         int dols = game.getPlayer().getBank().getDollars();
