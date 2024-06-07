@@ -96,6 +96,8 @@ public class BoardController {
 	public void handleRehearse() {
 		if (game.getPlayer().canRehearse()){
 			game.getPlayer().rehearse();
+			view.hideAllNotEnd();
+			view.updateChips(game.getPlayer().getRehearsed());
 		}
 	}
 
@@ -107,7 +109,8 @@ public class BoardController {
 	public void updateView(){
 		int creds = game.getPlayer().getBank().getCredits();
         int dols = game.getPlayer().getBank().getDollars();
-        view.displayStatus(game.getDaysLeft(), game.getScenesLeft(), game.getCurrentTurn(), creds, dols);
+		int tR = game.getPlayer().getRehearsed();
+        view.displayStatus(game.getDaysLeft(), game.getScenesLeft(), game.getCurrentTurn(), creds, dols, tR);
 	}
 
 	public void showCardBacks(){

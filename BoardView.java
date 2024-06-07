@@ -25,6 +25,7 @@ public class BoardView extends JFrame {
    JLabel playerColorLabel;
    JLabel creditsLabel;
    JLabel dollarsLabel;
+   JLabel rehearsedLabel;
    JLabel invalidLabel;
    JLabel roomlabel[];
    JLabel takeslabel[];
@@ -496,7 +497,7 @@ public class BoardView extends JFrame {
       bPane.add(activePlayerLabel,new Integer(2));
 
       playerColorLabel = new JLabel();
-      playerColorLabel.setBounds(icon.getIconWidth()+45, 375,50, 50);
+      playerColorLabel.setBounds(icon.getIconWidth()+45, 390,50, 50);
       bPane.add(playerColorLabel,new Integer(2));
 
       creditsLabel = new JLabel();
@@ -506,18 +507,27 @@ public class BoardView extends JFrame {
       dollarsLabel = new JLabel();
       dollarsLabel.setBounds(icon.getIconWidth()+10, 360,110, 10);
       bPane.add(dollarsLabel,new Integer(2));
+
+      rehearsedLabel = new JLabel();
+      rehearsedLabel.setBounds(icon.getIconWidth()+10, 375,110, 15);
+      bPane.add(rehearsedLabel,new Integer(2));
    }
 
-  	public void displayStatus(int d, int s, int p, int c, int dol){
+  	public void displayStatus(int d, int s, int p, int c, int dol, int tR){
 		daysLeftLabel.setText("Days Left: "+d);
 		scenesLeftLabel.setText("Scenes Left: "+s);
 		activePlayerLabel.setText("Player "+p+"\'s Turn");
 		creditsLabel.setText("Credits: "+c);
 		dollarsLabel.setText("Dollars: "+dol);
+      rehearsedLabel.setText("R. Chips: "+ tR);
       playerColorLabel.setIcon(pIcons[p - 1]);
       //playerColorLabel.setText("Here");
       playerColorLabel.setVisible(true);
   	}
+
+   public void updateChips(int tR){
+      rehearsedLabel.setText("R. Chips: "+ tR);
+   }
 
    public void createPlayers(int n, String [] colors){
       playerlabels = new JLabel[n];

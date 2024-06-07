@@ -135,7 +135,9 @@ public class Player {
 	}
 
 	public boolean canRehearse(){
-		return (curRole != null) && ((timesRehearsed + 1) >= curLocation.getScene().getBudget());
+		System.out.println((curRole != null));
+		System.out.println((timesRehearsed + 1) >= curLocation.getScene().getBudget());
+		return (curRole != null) && ((timesRehearsed + 1) < curLocation.getScene().getBudget());
 	}
 
 	public boolean canUpgrade(){
