@@ -23,11 +23,13 @@ public class BoardController {
 
 	public void handleUpgrade() {
 		view.hideAllNotEnd();
-		boolean opts[] = new boolean[6];
+		boolean opts[] = new boolean[5];
 		if (game.getPlayer().canUpgrade()){
-			for (int i = game.getPlayer().getRank(); i < 6; i++){
-				opts[i] = game.getPlayer().canUpgrade(i);
-				System.out.println(opts[i]);
+			for(int i = 2; i < game.getPlayer().getRank(); i++){
+				opts[i - 2] = false;
+			}
+			for (int i = game.getPlayer().getRank() + 1; i < 7; i++){
+				opts[i - 2] = game.getPlayer().canUpgrade(i);
 			}
 			view.upOptsPopulate(opts);
 			view.showUpOpts(true);

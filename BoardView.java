@@ -755,7 +755,7 @@ public class BoardView extends JFrame {
       upOpts.addItem("--Select--");
       for (int i = 0; i < ranks.length; i++){
 			if (ranks[i]){
-				upOpts.addItem("Rank "+(i+1));
+				upOpts.addItem("Rank "+(i+2));
 			}
 		}
       isUserInput = true;
